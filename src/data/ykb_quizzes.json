@@ -2,9 +2,11 @@
   {
     "id": "3",
     "title": "Delprov 1",
+    "category": "YKB",
     "questions": [
       {
         "id": "7",
+        "type": "multiple-choice",
         "text": "Du arbetar mycket med lastning och lossning och kommer därför inte upp i 4,5 timmar körtid. Hur många timmar i följd får du arbeta utan att ta rast enligt vägarbetstidslagen?",
         "image": null,
         "options": [
@@ -32,55 +34,33 @@
       },
       {
         "id": "8",
-        "text": "Du kommer till en olycksplats där en person har drabbats av chock (cirkulationssvikt). Vilken bör din första åtgärd vara enligt L-ABC?",
+        "type": "true-false",
+        "text": "Påstående: Vid chock (cirkulationssvikt) ska du se till att den skadade ligger stabilt med benen högt och har en filt över sig.",
         "image": null,
         "options": [
           {
             "id": "26",
-            "text": "Jag börjar utföra HLR på den personen",
+            "text": "Falskt",
             "isCorrect": false
           },
           {
             "id": "27",
-            "text": "Jag ser till att den skadade ligger stabilt med benen högt och har en filt över sig",
+            "text": "Sant",
             "isCorrect": true
-          },
-          {
-            "id": "28",
-            "text": "Jag kontrollerar den skadades kroppstemperatur",
-            "isCorrect": false
-          },
-          {
-            "id": "29",
-            "text": "Jag försöker ge den skadade vätska",
-            "isCorrect": false
           }
         ]
       },
       {
         "id": "9",
-        "text": "Ditt fordon är utrustat med EBS-bromssystem. Vad kan följden bli om EBS-systemet upphör att fungera under körning?",
+        "type": "fill-blank",
+        "text": "Ditt fordon är utrustat med EBS-bromssystem. Vad försämras om systemet upphör att fungera? (Ett ord)",
+        "correctAnswer": "Stabiliteten",
         "image": null,
         "options": [
-          {
-            "id": "30",
-            "text": "Parkeringsbromsen slutar fungera",
-            "isCorrect": false
-          },
           {
             "id": "31",
             "text": "Stabiliteten vid inbromsning försämras",
             "isCorrect": true
-          },
-          {
-            "id": "32",
-            "text": "Bromspedalen blir tyngre att trycka ner",
-            "isCorrect": false
-          },
-          {
-            "id": "33",
-            "text": "Fordonet blir helt bromslöst",
-            "isCorrect": false
           }
         ]
       },
@@ -220,10 +200,26 @@
         ]
       },
       {
-        "id": null,
+        "id": "15",
         "text": "Vilket kolli innehåller begränsad mängd?",
-        "image": null,
-        "options": []
+        "image": "/images/ykb/adr-300x120.png",
+        "options": [
+          {
+            "id": "54",
+            "text": "A",
+            "isCorrect": true
+          },
+          {
+            "id": "55",
+            "text": "B",
+            "isCorrect": false
+          },
+          {
+            "id": "56",
+            "text": "C",
+            "isCorrect": false
+          }
+        ]
       },
       {
         "id": "16",
@@ -351,10 +347,31 @@
         ]
       },
       {
-        "id": null,
+        "id": "21",
         "text": "Vilken tillåten belastning har detta spännband?",
-        "image": null,
-        "options": []
+        "image": "/images/ykb/lable_explanation-v2_800x800-1-131x300-qi28a1.png",
+        "options": [
+          {
+            "id": "75",
+            "text": "2,5 ton",
+            "isCorrect": true
+          },
+          {
+            "id": "76",
+            "text": "5 ton",
+            "isCorrect": false
+          },
+          {
+            "id": "77",
+            "text": "10 ton",
+            "isCorrect": false
+          },
+          {
+            "id": "78",
+            "text": "Det kan man inte avgöra av denna märklapp, utan man måste alltid räkna sömmarna i bandet",
+            "isCorrect": false
+          }
+        ]
       },
       {
         "id": "22",
@@ -934,10 +951,41 @@
         ]
       },
       {
-        "id": null,
+        "id": "71",
         "text": "Vad kallas denna lastsäkringsmetod?",
-        "image": null,
-        "options": []
+        "image": "/images/ykb/verfallssurrning-300x207.jpg",
+        "options": [
+          {
+            "id": "277",
+            "text": "Blockning",
+            "isCorrect": false
+          },
+          {
+            "id": "278",
+            "text": "Förstängning",
+            "isCorrect": false
+          },
+          {
+            "id": "279",
+            "text": "Grimma",
+            "isCorrect": false
+          },
+          {
+            "id": "280",
+            "text": "Loopsurrning",
+            "isCorrect": false
+          },
+          {
+            "id": "281",
+            "text": "Överfallssurrning",
+            "isCorrect": true
+          },
+          {
+            "id": "282",
+            "text": "Låsning",
+            "isCorrect": false
+          }
+        ]
       },
       {
         "id": "70",
@@ -1306,10 +1354,31 @@
         ]
       },
       {
-        "id": null,
+        "id": "57",
         "text": "Du ska transportera ett gods med märkning enligt bilden. Vilken information får du av denna märkning?",
-        "image": null,
-        "options": []
+        "image": "/images/ykb/dmeu_ac300_1_lq11_1_stdlang_all_-300x300-ebfmn.gif",
+        "options": [
+          {
+            "id": "218",
+            "text": "Kollit innehåller farligt gods klass 2",
+            "isCorrect": false
+          },
+          {
+            "id": "219",
+            "text": "Kollit innehåller farligt gods klass 3",
+            "isCorrect": false
+          },
+          {
+            "id": "220",
+            "text": "Kollit innehåller farligt gods i \"begränsad mängd\"",
+            "isCorrect": true
+          },
+          {
+            "id": "221",
+            "text": "Kollit innehåller farligt gods i \"värdeberäknad mängd\"",
+            "isCorrect": false
+          }
+        ]
       },
       {
         "id": "56",
@@ -1405,10 +1474,26 @@
         ]
       },
       {
-        "id": null,
+        "id": "52",
         "text": "Du ska lastsäkra gods med surrning. Kravet på förspänning (STF) är 500 kg. Vilket spännband ska du använda?",
-        "image": null,
-        "options": []
+        "image": "/images/ykb/spnnband-267x300.png",
+        "options": [
+          {
+            "id": "202",
+            "text": "A",
+            "isCorrect": true
+          },
+          {
+            "id": "203",
+            "text": "B",
+            "isCorrect": false
+          },
+          {
+            "id": "204",
+            "text": "Du kan använda båda banden",
+            "isCorrect": false
+          }
+        ]
       },
       {
         "id": "51",
@@ -1663,6 +1748,7 @@
   {
     "id": "4",
     "title": "Delprov 2",
+    "category": "YKB",
     "questions": [
       {
         "id": "72",
@@ -1903,10 +1989,26 @@
         ]
       },
       {
-        "id": null,
+        "id": "81",
         "text": "Vilket kolli innehåller farligt gods (ADR) i begränsad mängd?",
-        "image": null,
-        "options": []
+        "image": "/images/ykb/adr-1-300x173.png",
+        "options": [
+          {
+            "id": "318",
+            "text": "A",
+            "isCorrect": false
+          },
+          {
+            "id": "319",
+            "text": "B",
+            "isCorrect": true
+          },
+          {
+            "id": "320",
+            "text": "A och B",
+            "isCorrect": false
+          }
+        ]
       },
       {
         "id": "82",
@@ -2828,10 +2930,31 @@
         ]
       },
       {
-        "id": null,
+        "id": "119",
         "text": "Vad betyder denna symbol?",
-        "image": null,
-        "options": []
+        "image": "/images/ykb/unnamed.jpg",
+        "options": [
+          {
+            "id": "454",
+            "text": "Hur kollit ska köras",
+            "isCorrect": false
+          },
+          {
+            "id": "455",
+            "text": "Var kollit ska surras",
+            "isCorrect": false
+          },
+          {
+            "id": "456",
+            "text": "Var kollits tyngdpunkt ligger",
+            "isCorrect": true
+          },
+          {
+            "id": "457",
+            "text": "Denna sida upp",
+            "isCorrect": false
+          }
+        ]
       },
       {
         "id": "120",
@@ -2856,10 +2979,31 @@
         ]
       },
       {
-        "id": null,
+        "id": "121",
         "text": "Vad heter denna typ av förpackning?",
-        "image": null,
-        "options": []
+        "image": "/images/ykb/ibc-tank-ibc-behallare-ibc-container-300x225.jpg",
+        "options": [
+          {
+            "id": "461",
+            "text": "ABC",
+            "isCorrect": false
+          },
+          {
+            "id": "462",
+            "text": "CNC",
+            "isCorrect": false
+          },
+          {
+            "id": "463",
+            "text": "HDD",
+            "isCorrect": false
+          },
+          {
+            "id": "464",
+            "text": "IBC",
+            "isCorrect": true
+          }
+        ]
       },
       {
         "id": "122",
@@ -3266,6 +3410,7 @@
   {
     "id": "5",
     "title": "Delprov 3",
+    "category": "YKB",
     "questions": [
       {
         "id": "137",
@@ -4673,10 +4818,31 @@
         ]
       },
       {
-        "id": null,
+        "id": "192",
         "text": "Hur hög förspänningskraft får man med detta spännband om SHF är 50 daN?",
-        "image": null,
-        "options": []
+        "image": "/images/ykb/extrabilder2953754_large-213x300.jpg",
+        "options": [
+          {
+            "id": "728",
+            "text": "200 daN",
+            "isCorrect": false
+          },
+          {
+            "id": "729",
+            "text": "400 daN",
+            "isCorrect": true
+          },
+          {
+            "id": "730",
+            "text": "2000 daN",
+            "isCorrect": false
+          },
+          {
+            "id": "731",
+            "text": "5000 daN",
+            "isCorrect": false
+          }
+        ]
       },
       {
         "id": "193",
@@ -4901,60 +5067,160 @@
   {
     "id": "6",
     "title": "Delprov 4",
+    "category": "YKB",
     "questions": [
       {
-        "id": null,
+        "id": "202",
         "text": "Vad anger symbolen?",
-        "image": null,
-        "options": []
+        "image": "/images/ykb/216401.png",
+        "options": [
+          {
+            "id": "763",
+            "text": "Skyddas mot väta",
+            "isCorrect": true
+          },
+          {
+            "id": "764",
+            "text": "Ska förvaras i fuktiga eller våta utrymmen",
+            "isCorrect": false
+          }
+        ]
       },
       {
-        "id": null,
+        "id": "203",
         "text": "Vad anger symbolen?",
-        "image": null,
-        "options": []
+        "image": "/images/ykb/216401.png",
+        "options": [
+          {
+            "id": "765",
+            "text": "Förvaras varmt",
+            "isCorrect": false
+          },
+          {
+            "id": "766",
+            "text": "Förvaras svalt",
+            "isCorrect": true
+          }
+        ]
       },
       {
-        "id": null,
+        "id": "204",
         "text": "Vad anger symbolen?",
-        "image": null,
-        "options": []
+        "image": "/images/ykb/216401.png",
+        "options": [
+          {
+            "id": "767",
+            "text": "Får ej rullas",
+            "isCorrect": true
+          },
+          {
+            "id": "768",
+            "text": "Får ej fästas i dessa två punkter",
+            "isCorrect": false
+          }
+        ]
       },
       {
-        "id": null,
+        "id": "205",
         "text": "Vad anger symbolen?",
-        "image": null,
-        "options": []
+        "image": "/images/ykb/216401.png",
+        "options": [
+          {
+            "id": "769",
+            "text": "Staplingsgräns",
+            "isCorrect": true
+          },
+          {
+            "id": "770",
+            "text": "Minsta vikt man måste ställa på aktuellt kolli",
+            "isCorrect": false
+          }
+        ]
       },
       {
-        "id": null,
+        "id": "206",
         "text": "Vad anger symbolen?",
-        "image": null,
-        "options": []
+        "image": "/images/ykb/216401.png",
+        "options": [
+          {
+            "id": "771",
+            "text": "China Export",
+            "isCorrect": false
+          },
+          {
+            "id": "772",
+            "text": "Produkten överensstämmer med EU-direktiven",
+            "isCorrect": true
+          }
+        ]
       },
       {
-        "id": null,
+        "id": "207",
         "text": "Vad anger symbolerna?",
-        "image": null,
-        "options": []
+        "image": "/images/ykb/viktisymboler.jpg",
+        "options": [
+          {
+            "id": "773",
+            "text": "Skaderisk vid lyft av paket, i olika vikter",
+            "isCorrect": true
+          },
+          {
+            "id": "774",
+            "text": "Lyfttekning",
+            "isCorrect": false
+          }
+        ]
       },
       {
-        "id": null,
+        "id": "208",
         "text": "Vad anger symbolen?",
-        "image": null,
-        "options": []
+        "image": "/images/ykb/216401.png",
+        "options": [
+          {
+            "id": "775",
+            "text": "Denna sida upp",
+            "isCorrect": true
+          },
+          {
+            "id": "776",
+            "text": "Anger var lådan ska öppnas",
+            "isCorrect": false
+          }
+        ]
       },
       {
-        "id": null,
+        "id": "209",
         "text": "Vad anger symbolen?",
-        "image": null,
-        "options": []
+        "image": "/images/ykb/216401.png",
+        "options": [
+          {
+            "id": "777",
+            "text": "Krok bör inte användas",
+            "isCorrect": false
+          },
+          {
+            "id": "778",
+            "text": "Krok får inte användas",
+            "isCorrect": true
+          }
+        ]
       },
       {
-        "id": null,
+        "id": "210",
         "text": "Vad ser vi på bilden?",
-        "image": null,
-        "options": []
+        "image": "/images/ykb/vxelflak-300x205.jpg",
+        "options": [
+          {
+            "id": "779",
+            "text": "Ett växelflak",
+            "isCorrect": true
+          },
+          {
+            "id": "780",
+            "text": "En trailer",
+            "isCorrect": false
+          }
+        ]
       },
       {
         "id": "211",
@@ -4984,28 +5250,77 @@
         ]
       },
       {
-        "id": null,
+        "id": "212",
         "text": "Vad anger symbolen?",
-        "image": null,
-        "options": []
+        "image": "/images/ykb/216401.png",
+        "options": [
+          {
+            "id": "785",
+            "text": "Ska förvaras svalt",
+            "isCorrect": false
+          },
+          {
+            "id": "786",
+            "text": "Ska förvaras varmt",
+            "isCorrect": false
+          },
+          {
+            "id": "787",
+            "text": "Temperaturgränser",
+            "isCorrect": true
+          }
+        ]
       },
       {
-        "id": null,
+        "id": "213",
         "text": "Vad anger symbolen?",
-        "image": null,
-        "options": []
+        "image": "/images/ykb/216401.png",
+        "options": [
+          {
+            "id": "788",
+            "text": "Extra sidskydd ska användas vid lyft",
+            "isCorrect": false
+          },
+          {
+            "id": "789",
+            "text": "Klämaggregat anbringas här",
+            "isCorrect": true
+          }
+        ]
       },
       {
-        "id": null,
+        "id": "214",
         "text": "Vad anger symbolen?",
-        "image": null,
-        "options": []
+        "image": "/images/ykb/216401.png",
+        "options": [
+          {
+            "id": "790",
+            "text": "Slingas här",
+            "isCorrect": true
+          },
+          {
+            "id": "791",
+            "text": "Kedja eller kätting ska användas vid lyft",
+            "isCorrect": false
+          }
+        ]
       },
       {
-        "id": null,
+        "id": "215",
         "text": "Vad anger symbolen?",
-        "image": null,
-        "options": []
+        "image": "/images/ykb/216401.png",
+        "options": [
+          {
+            "id": "792",
+            "text": "Ömtåligt, hanteras varsamt",
+            "isCorrect": true
+          },
+          {
+            "id": "793",
+            "text": "Innehåller glas",
+            "isCorrect": false
+          }
+        ]
       },
       {
         "id": "216",
@@ -5334,16 +5649,48 @@
         ]
       },
       {
-        "id": null,
+        "id": "229",
         "text": "Vad betyder vägmärket?",
-        "image": null,
-        "options": []
+        "image": "/images/ykb/c16-300x300.png",
+        "options": [
+          {
+            "id": "841",
+            "text": "Begränsad bruttovikt på fordon, max 12 ton",
+            "isCorrect": true
+          },
+          {
+            "id": "842",
+            "text": "Begränsad bruttovikt på fordon och fordonståg, max 12 ton",
+            "isCorrect": false
+          },
+          {
+            "id": "843",
+            "text": "Krav om dygnsvila om minst 12 timmar senaste dygnet",
+            "isCorrect": false
+          }
+        ]
       },
       {
-        "id": null,
+        "id": "230",
         "text": "Vad betyder vägmärket?",
-        "image": null,
-        "options": []
+        "image": "/images/ykb/c16-300x300.png",
+        "options": [
+          {
+            "id": "844",
+            "text": "Begränsad vikt på fordon och fordonståg, max 30 ton",
+            "isCorrect": true
+          },
+          {
+            "id": "845",
+            "text": "Begränsad vikt på fordonen, max 30 ton",
+            "isCorrect": false
+          },
+          {
+            "id": "846",
+            "text": "Begränsat boggitryck, max 30 ton",
+            "isCorrect": false
+          }
+        ]
       },
       {
         "id": "232",
@@ -5427,10 +5774,36 @@
         ]
       },
       {
-        "id": null,
+        "id": "234",
         "text": "Vad anger märket?",
-        "image": null,
-        "options": []
+        "image": "/images/ykb/ankare-300x218.png",
+        "options": [
+          {
+            "id": "859",
+            "text": "Hur många ton ankaret i lasten väger",
+            "isCorrect": false
+          },
+          {
+            "id": "860",
+            "text": "Hur höga vågor, i meter, lasten klarar",
+            "isCorrect": false
+          },
+          {
+            "id": "861",
+            "text": "Maximalt antal kollin i containern",
+            "isCorrect": false
+          },
+          {
+            "id": "862",
+            "text": "Antal surrningsfästen per sida trailern har",
+            "isCorrect": true
+          },
+          {
+            "id": "863",
+            "text": "Antal surrningsfästen trailern totalt har",
+            "isCorrect": false
+          }
+        ]
       },
       {
         "id": "235",
@@ -5450,16 +5823,53 @@
         ]
       },
       {
-        "id": null,
+        "id": "236",
         "text": "När behöver man märka ut sitt fordon med varningsskylt \"bred last\"?",
-        "image": null,
-        "options": []
+        "image": "/images/ykb/bredlast-300x232.gif",
+        "options": [
+          {
+            "id": "866",
+            "text": "När fordonet och/eller lasten är 240 cm bred",
+            "isCorrect": false
+          },
+          {
+            "id": "867",
+            "text": "När fordonet och/eller lasten är 250 cm bred",
+            "isCorrect": false
+          },
+          {
+            "id": "868",
+            "text": "När fordonet och/eller lasten är 260 cm bred",
+            "isCorrect": false
+          },
+          {
+            "id": "869",
+            "text": "När fordonet och/eller lasten är över 260 cm bred",
+            "isCorrect": true
+          }
+        ]
       },
       {
-        "id": null,
+        "id": "237",
         "text": "Vilket sorts farligt gods är särskilt lömskt och farligt vid en eventuell olycka?",
-        "image": null,
-        "options": []
+        "image": "/images/ykb/23.png",
+        "options": [
+          {
+            "id": "870",
+            "text": "Klass 2.3 - Giftiga gaser",
+            "isCorrect": true
+          },
+          {
+            "id": "871",
+            "text": "Klass 4.3 - Ej brandfarliga och ej giftiga gaser",
+            "isCorrect": false
+          },
+          {
+            "id": "872",
+            "text": "Klass 5.1 - Oxiderande ämnen",
+            "isCorrect": false
+          }
+        ]
       },
       {
         "id": "238",
@@ -5862,28 +6272,97 @@
         ]
       },
       {
-        "id": null,
+        "id": "253",
         "text": "Vad betyder vägmärket?",
-        "image": null,
-        "options": []
+        "image": "/images/ykb/c16-300x300.png",
+        "options": [
+          {
+            "id": "932",
+            "text": "Begränsad höjd, 2,2 m",
+            "isCorrect": false
+          },
+          {
+            "id": "933",
+            "text": "Begränsad bredd, 2,2 m",
+            "isCorrect": true
+          },
+          {
+            "id": "934",
+            "text": "Krav om att fordon eller släpvagnar inte får ha mer än 2 hjulaxlar vardera",
+            "isCorrect": false
+          }
+        ]
       },
       {
-        "id": null,
+        "id": "254",
         "text": "Maximalt boggitryck för att du ska få passera detta vägmärke?",
-        "image": null,
-        "options": []
+        "image": "/images/ykb/vm-c22-2_1200x1200-300x300-opnqja.png",
+        "options": [
+          {
+            "id": "935",
+            "text": "12 ton",
+            "isCorrect": false
+          },
+          {
+            "id": "936",
+            "text": "16 ton",
+            "isCorrect": true
+          },
+          {
+            "id": "937",
+            "text": "18 ton",
+            "isCorrect": false
+          },
+          {
+            "id": "938",
+            "text": "24 ton",
+            "isCorrect": false
+          }
+        ]
       },
       {
-        "id": null,
+        "id": "255",
         "text": "Vad kallas surrningsmetoden?",
-        "image": null,
-        "options": []
+        "image": "/images/ykb/inked6633_li-2lih4a.jpg",
+        "options": [
+          {
+            "id": "939",
+            "text": "Grimma",
+            "isCorrect": false
+          },
+          {
+            "id": "940",
+            "text": "Loopsurrning",
+            "isCorrect": true
+          },
+          {
+            "id": "941",
+            "text": "Överfallsurrning",
+            "isCorrect": false
+          }
+        ]
       },
       {
-        "id": null,
+        "id": "256",
         "text": "Vad kallas surrningsmetoden?",
-        "image": null,
-        "options": []
+        "image": "/images/ykb/inked6633_li-2lih4a.jpg",
+        "options": [
+          {
+            "id": "942",
+            "text": "Grimma",
+            "isCorrect": true
+          },
+          {
+            "id": "943",
+            "text": "Loopsurrning",
+            "isCorrect": false
+          },
+          {
+            "id": "944",
+            "text": "Överfallsurrning",
+            "isCorrect": false
+          }
+        ]
       },
       {
         "id": "257",
@@ -6135,11 +6614,12 @@
   {
     "id": "7",
     "title": "Delprov 5",
+    "category": "YKB",
     "questions": [
       {
         "id": "271",
         "text": "Vilken friktionskoefficient har grov betongyta mot sågad träregel?",
-        "image": null,
+        "image": "/images/ykb/friktion.png",
         "options": [
           {
             "id": "996",
@@ -6166,7 +6646,7 @@
       {
         "id": "267",
         "text": "Hur många överfallssurrningar behövs för att säkra ett gods, i sidled, som väger 3500 kg?Godset står på träpall och golvet är av räfflad aluminium.",
-        "image": null,
+        "image": "/images/ykb/friktion.png",
         "options": [
           {
             "id": "980",
@@ -6274,7 +6754,7 @@
       {
         "id": "269",
         "text": "Du ska lasta gods som väger 2 ton. Godset står i en stålbur och lastflaket är av räfflad aluminium. Hur många överfallssurrningar krävs för att förhindra att godset glider framåt?",
-        "image": null,
+        "image": "/images/ykb/friktion.png",
         "options": [
           {
             "id": "988",
@@ -6301,7 +6781,7 @@
       {
         "id": "270",
         "text": "Du ska lasta ett kolli som väger 5 ton. Du vill använda grimsurrning för att förhindra att godset glider. Hur många grimsurrningar behöver du för att förhindra att det glider framåt?Godset står på friktionsgummi och lastflaket är av stålplåt.",
-        "image": null,
+        "image": "/images/ykb/friktion.png",
         "options": [
           {
             "id": "992",
@@ -6350,7 +6830,7 @@
       {
         "id": "273",
         "text": "Hur många ton förhindrar ett loopsurrningspar att glida i sidled, om du har ett μ-värde på 0,35?",
-        "image": null,
+        "image": "/images/ykb/loop_glid.png",
         "options": [
           {
             "id": "1003",
@@ -6488,81 +6968,243 @@
         ]
       },
       {
-        "id": null,
+        "id": "274",
         "text": "Vad heter denna lastsymbol?",
-        "image": null,
-        "options": []
+        "image": "/images/ykb/slingas-hr.png",
+        "options": [
+          {
+            "id": "1007",
+            "text": "Glas",
+            "isCorrect": false
+          },
+          {
+            "id": "1008",
+            "text": "Ömtåligt - Hanteras varsamt",
+            "isCorrect": true
+          }
+        ]
       },
       {
-        "id": null,
+        "id": "275",
         "text": "Vad heter denna lastsymbol?",
-        "image": null,
-        "options": []
+        "image": "/images/ykb/slingas-hr.png",
+        "options": [
+          {
+            "id": "1009",
+            "text": "Godset ska förvaras inomhus",
+            "isCorrect": false
+          },
+          {
+            "id": "1010",
+            "text": "Godset ska förvaras under paraply",
+            "isCorrect": false
+          },
+          {
+            "id": "1011",
+            "text": "Skyddas mot väta",
+            "isCorrect": true
+          }
+        ]
       },
       {
-        "id": null,
+        "id": "276",
         "text": "Vad heter denna lastsymbol?",
-        "image": null,
-        "options": []
+        "image": "/images/ykb/slingas-hr.png",
+        "options": [
+          {
+            "id": "1012",
+            "text": "Uppåt, framåt",
+            "isCorrect": false
+          },
+          {
+            "id": "1013",
+            "text": "Spetsigt föremål",
+            "isCorrect": false
+          },
+          {
+            "id": "1014",
+            "text": "Denna sida upp",
+            "isCorrect": true
+          }
+        ]
       },
       {
-        "id": null,
+        "id": "277",
         "text": "Vad heter denna lastsymbol?",
-        "image": null,
-        "options": []
+        "image": "/images/ykb/slingas-hr.png",
+        "options": [
+          {
+            "id": "1015",
+            "text": "Förvaras inomhus",
+            "isCorrect": false
+          },
+          {
+            "id": "1016",
+            "text": "Förvaras svalt",
+            "isCorrect": true
+          }
+        ]
       },
       {
-        "id": null,
+        "id": "278",
         "text": "Vad heter denna lastsymbol?",
-        "image": null,
-        "options": []
+        "image": "/images/ykb/slingas-hr.png",
+        "options": [
+          {
+            "id": "1017",
+            "text": "Använd ej krok",
+            "isCorrect": true
+          },
+          {
+            "id": "1018",
+            "text": "Fiskeutrustning förbjuden",
+            "isCorrect": false
+          }
+        ]
       },
       {
-        "id": null,
+        "id": "279",
         "text": "Vad heter denna lastsymbol?",
-        "image": null,
-        "options": []
+        "image": "/images/ykb/slingas-hr.png",
+        "options": [
+          {
+            "id": "1019",
+            "text": "Använd kedja",
+            "isCorrect": false
+          },
+          {
+            "id": "1020",
+            "text": "Slingas här",
+            "isCorrect": true
+          },
+          {
+            "id": "1021",
+            "text": "Kedja eller vajer får användas vid lyft",
+            "isCorrect": false
+          },
+          {
+            "id": "1022",
+            "text": "Kedja eller vajer får ej användas vid lyft",
+            "isCorrect": false
+          }
+        ]
       },
       {
-        "id": null,
+        "id": "280",
         "text": "Vad heter lastsymbolen?",
-        "image": null,
-        "options": []
+        "image": "/images/ykb/csm_ikon_temperaturgrnse_5033aa4d8f.png",
+        "options": [
+          {
+            "id": "1023",
+            "text": "Tyngdpunkt",
+            "isCorrect": true
+          },
+          {
+            "id": "1024",
+            "text": "Räddningsutrustning",
+            "isCorrect": false
+          }
+        ]
       },
       {
-        "id": null,
+        "id": "281",
         "text": "Vad heter lastsymbolen?",
-        "image": null,
-        "options": []
+        "image": "/images/ykb/csm_ikon_temperaturgrnse_5033aa4d8f.png",
+        "options": [
+          {
+            "id": "1025",
+            "text": "Får ej rullas",
+            "isCorrect": true
+          },
+          {
+            "id": "1026",
+            "text": "Får ej roteras",
+            "isCorrect": false
+          }
+        ]
       },
       {
-        "id": null,
+        "id": "282",
         "text": "Vad heter lastsymbolen?",
-        "image": null,
-        "options": []
+        "image": "/images/ykb/csm_ikon_temperaturgrnse_5033aa4d8f.png",
+        "options": [
+          {
+            "id": "1027",
+            "text": "Inga gaffelkärror här",
+            "isCorrect": true
+          },
+          {
+            "id": "1028",
+            "text": "Klacka inte fotbollen",
+            "isCorrect": false
+          }
+        ]
       },
       {
-        "id": null,
+        "id": "283",
         "text": "Vad heter lastsymbolen?",
-        "image": null,
-        "options": []
+        "image": "/images/ykb/csm_ikon_temperaturgrnse_5033aa4d8f.png",
+        "options": [
+          {
+            "id": "1029",
+            "text": "Högsta staplingsgräns",
+            "isCorrect": true
+          },
+          {
+            "id": "1030",
+            "text": "Locket väger",
+            "isCorrect": false
+          },
+          {
+            "id": "1031",
+            "text": "Maxvikt på locket",
+            "isCorrect": false
+          }
+        ]
       },
       {
-        "id": null,
+        "id": "284",
         "text": "Vad heter lastsymbolen?",
-        "image": null,
-        "options": []
+        "image": "/images/ykb/csm_ikon_temperaturgrnse_5033aa4d8f.png",
+        "options": [
+          {
+            "id": "1032",
+            "text": "Sidoskydd ska användas vid lyft",
+            "isCorrect": false
+          },
+          {
+            "id": "1033",
+            "text": "Kläm här",
+            "isCorrect": true
+          }
+        ]
       },
       {
-        "id": null,
+        "id": "285",
         "text": "Vad heter lastsymbolen?",
-        "image": null,
-        "options": []
+        "image": "/images/ykb/csm_ikon_temperaturgrnse_5033aa4d8f.png",
+        "options": [
+          {
+            "id": "1034",
+            "text": "Förvaras kallt",
+            "isCorrect": false
+          },
+          {
+            "id": "1035",
+            "text": "Förvaras varmt",
+            "isCorrect": false
+          },
+          {
+            "id": "1036",
+            "text": "Temperaturbegräsningar",
+            "isCorrect": true
+          }
+        ]
       },
       {
         "id": "287",
         "text": "Ett kolli väger 800 kg och har följande dimensioner\nHöjd: 3,0 m\nLängd: 1,0 m\nBredd: 1,0 mHur många överfallssurrningar behövs för att förhindra att godset tippar framåt?",
-        "image": null,
+        "image": "/images/ykb/overfall_tipp_bredd.png",
         "options": [
           {
             "id": "1041",
@@ -6589,7 +7231,7 @@
       {
         "id": "288",
         "text": "Hur många överfallssurrningar behövs för att förhindra 2 rader av gods att tippa i sidled om μ-värdet är 0,45, vikten totalt 2800 kg och varje kolli har följande dimensioner\nHöjd: 2,4 m\nLängd: 2,0 m\nBredd: 0,8 m",
-        "image": null,
+        "image": "/images/ykb/overfall_tipp_bredd.png",
         "options": [
           {
             "id": "1045",
@@ -6766,82 +7408,345 @@
         ]
       },
       {
-        "id": null,
+        "id": "297",
         "text": "Vad har fordonet för tjänstevikt?",
-        "image": null,
-        "options": []
+        "image": "/images/ykb/tjanstevikt-zyfgll.png",
+        "options": [
+          {
+            "id": "1079",
+            "text": "11 500 kg",
+            "isCorrect": false
+          },
+          {
+            "id": "1080",
+            "text": "12 500 kg",
+            "isCorrect": true
+          },
+          {
+            "id": "1081",
+            "text": "14 500 kg",
+            "isCorrect": false
+          },
+          {
+            "id": "1082",
+            "text": "26 000 kg",
+            "isCorrect": false
+          },
+          {
+            "id": "1101",
+            "text": "27 000 kg",
+            "isCorrect": false
+          }
+        ]
       },
       {
-        "id": null,
+        "id": "298",
         "text": "Vad har fordonet för maxlast?",
-        "image": null,
-        "options": []
+        "image": "/images/ykb/maxlast-8cu0ej.png",
+        "options": [
+          {
+            "id": "1083",
+            "text": "10 000 kg",
+            "isCorrect": false
+          },
+          {
+            "id": "1084",
+            "text": "13 500 kg",
+            "isCorrect": true
+          },
+          {
+            "id": "1085",
+            "text": "14 500 kg",
+            "isCorrect": false
+          },
+          {
+            "id": "1086",
+            "text": "19 000 kg",
+            "isCorrect": false
+          }
+        ]
       },
       {
-        "id": null,
+        "id": "299",
         "text": "Vad har fordonet för totalvikt?",
-        "image": null,
-        "options": []
+        "image": "/images/ykb/totalvikt-dl2qo.png",
+        "options": [
+          {
+            "id": "1087",
+            "text": "12 500 kg",
+            "isCorrect": false
+          },
+          {
+            "id": "1088",
+            "text": "19 000 kg",
+            "isCorrect": false
+          },
+          {
+            "id": "1089",
+            "text": "26 000 kg",
+            "isCorrect": true
+          },
+          {
+            "id": "1090",
+            "text": "27 000 kg",
+            "isCorrect": false
+          },
+          {
+            "id": "1091",
+            "text": "70 000 kg",
+            "isCorrect": false
+          }
+        ]
       },
       {
-        "id": null,
+        "id": "300",
         "text": "Vad har fordonet för tillåten lastvikt?",
-        "image": null,
-        "options": []
+        "image": "/images/ykb/tillaten-lastvikt-lb5k67.png",
+        "options": [
+          {
+            "id": "1092",
+            "text": "8 000 kg",
+            "isCorrect": false
+          },
+          {
+            "id": "1093",
+            "text": "11 000 kg",
+            "isCorrect": true
+          },
+          {
+            "id": "1094",
+            "text": "12 000 kg",
+            "isCorrect": false
+          },
+          {
+            "id": "1095",
+            "text": "14 500 kg",
+            "isCorrect": false
+          },
+          {
+            "id": "1096",
+            "text": "8000 + 19000 kg",
+            "isCorrect": false
+          }
+        ]
       },
       {
-        "id": null,
+        "id": "301",
         "text": "Vad har fordonet för skattevikt?",
-        "image": null,
-        "options": []
+        "image": "/images/ykb/skattevikt-fhdth9.png",
+        "options": [
+          {
+            "id": "1097",
+            "text": "12 500 kg",
+            "isCorrect": false
+          },
+          {
+            "id": "1098",
+            "text": "14 500 kg",
+            "isCorrect": false
+          },
+          {
+            "id": "1099",
+            "text": "25 000 kg",
+            "isCorrect": true
+          },
+          {
+            "id": "1100",
+            "text": "26 000 kg",
+            "isCorrect": false
+          }
+        ]
       },
       {
-        "id": null,
+        "id": "307",
         "text": "Hur många hjulaxlar har fordonet?",
-        "image": null,
-        "options": []
+        "image": "/images/ykb/registeringsbevis-9xtko.png",
+        "options": [
+          {
+            "id": "1118",
+            "text": "2 axlar",
+            "isCorrect": false
+          },
+          {
+            "id": "1119",
+            "text": "3 axlar",
+            "isCorrect": true
+          },
+          {
+            "id": "1120",
+            "text": "4 axlar",
+            "isCorrect": false
+          },
+          {
+            "id": "1121",
+            "text": "5 axlar",
+            "isCorrect": false
+          }
+        ]
       },
       {
-        "id": null,
+        "id": "302",
         "text": "Vad har lastbilen för hjulkonfiguration bak?",
-        "image": null,
-        "options": []
+        "image": "/images/ykb/registeringsbevis-9xtko.png",
+        "options": [
+          {
+            "id": "1102",
+            "text": "Enkelaxel",
+            "isCorrect": false
+          },
+          {
+            "id": "1103",
+            "text": "Boggi",
+            "isCorrect": true
+          },
+          {
+            "id": "1104",
+            "text": "Trippelaxel",
+            "isCorrect": false
+          }
+        ]
       },
       {
-        "id": null,
+        "id": "303",
         "text": "Har lastbilen tvillingmontage?",
-        "image": null,
-        "options": []
+        "image": "/images/ykb/registeringsbevis-9xtko.png",
+        "options": [
+          {
+            "id": "1105",
+            "text": "Ja, på en axel",
+            "isCorrect": true
+          },
+          {
+            "id": "1106",
+            "text": "Ja, på två axlar",
+            "isCorrect": false
+          },
+          {
+            "id": "1107",
+            "text": "Nej",
+            "isCorrect": false
+          }
+        ]
       },
       {
-        "id": null,
+        "id": "304",
         "text": "Vad har lastbilen för maxlast respektive tillåten lastvikt?",
-        "image": null,
-        "options": []
+        "image": "/images/ykb/tillaten-lastvikt-maxlast-cs8lv9.png",
+        "options": [
+          {
+            "id": "1108",
+            "text": "Maxlast = 11 000 kg, Tillåten lastvikt = 11 000 kg",
+            "isCorrect": false
+          },
+          {
+            "id": "1109",
+            "text": "Maxlast = 12 500 kg, Tillåten lastvikt = 11 000 kg",
+            "isCorrect": false
+          },
+          {
+            "id": "1110",
+            "text": "Maxlast = 14 000 kg, Tillåten lastvikt = 13 000 kg",
+            "isCorrect": true
+          },
+          {
+            "id": "1111",
+            "text": "Maxlast = 14 000 kg, Tillåten lastvikt = 14 000 kg",
+            "isCorrect": false
+          }
+        ]
       },
       {
-        "id": null,
+        "id": "305",
         "text": "Är det lastbilen eller vägen som sätter begränsning för axeltrycket på framaxeln när lastbilen kör på en BK1-väg?",
-        "image": null,
-        "options": []
+        "image": "/images/ykb/registeringsbevis-9xtko.png",
+        "options": [
+          {
+            "id": "1112",
+            "text": "Lastbilen",
+            "isCorrect": true
+          },
+          {
+            "id": "1113",
+            "text": "Vägen",
+            "isCorrect": false
+          },
+          {
+            "id": "1114",
+            "text": "Både lastbilen och vägen sätter begränsningen",
+            "isCorrect": false
+          }
+        ]
       },
       {
-        "id": null,
+        "id": "306",
         "text": "Är det lastbilen eller vägen som sätter begränsning för axeltrycket på boggin när lastbilen kör på en BK1-väg? Lastbilen har luftfjädring och drivaxeln har tvillingmontage.",
-        "image": null,
-        "options": []
+        "image": "/images/ykb/tvillingmontage-luftfjadring-28000-6ls9o.png",
+        "options": [
+          {
+            "id": "1115",
+            "text": "Lastbilen",
+            "isCorrect": false
+          },
+          {
+            "id": "1116",
+            "text": "Vägen",
+            "isCorrect": false
+          },
+          {
+            "id": "1117",
+            "text": "Både lastbilen och vägen sätter begränsningen",
+            "isCorrect": true
+          }
+        ]
       },
       {
-        "id": null,
+        "id": "312",
         "text": "Vad vet vi är sant om lastbilen i registreringsbeviset?",
-        "image": null,
-        "options": []
+        "image": "/images/ykb/tvillingmontageluftfjadring-u0fil.png",
+        "options": [
+          {
+            "id": "1139",
+            "text": "Bruttovikten är 24 000 kg",
+            "isCorrect": false
+          },
+          {
+            "id": "1140",
+            "text": "Tillåten lastvikt är samma som maxlast",
+            "isCorrect": true
+          },
+          {
+            "id": "1141",
+            "text": "Tjänstevikten är 12 500 kg",
+            "isCorrect": false
+          }
+        ]
       },
       {
-        "id": null,
+        "id": "311",
         "text": "Vad vet vi är sant om lastbilen i registreringsbeviset?",
-        "image": null,
-        "options": []
+        "image": "/images/ykb/tvillingmontageluftfjadring-u0fil.png",
+        "options": [
+          {
+            "id": "1135",
+            "text": "Drivaxeln har tvillingmontage och luftfjädring",
+            "isCorrect": true
+          },
+          {
+            "id": "1136",
+            "text": "Tillåten lastvikt är lägre än maxlast",
+            "isCorrect": false
+          },
+          {
+            "id": "1137",
+            "text": "Tjänstevikten är 12 000 kg",
+            "isCorrect": false
+          },
+          {
+            "id": "1138",
+            "text": "Lastbilen har trippelaxel (tridem)",
+            "isCorrect": false
+          }
+        ]
       },
       {
         "id": "313",
@@ -7134,10 +8039,31 @@
         ]
       },
       {
-        "id": null,
+        "id": "323",
         "text": "Vilket fordon påverkas mest av det som detta vägmärke varnar för?",
-        "image": null,
-        "options": []
+        "image": "/images/ykb/a24.png",
+        "options": [
+          {
+            "id": "1187",
+            "text": "Ett brett fordon",
+            "isCorrect": false
+          },
+          {
+            "id": "1188",
+            "text": "Ett högt fordon",
+            "isCorrect": true
+          },
+          {
+            "id": "1189",
+            "text": "Ett lågt fordon",
+            "isCorrect": false
+          },
+          {
+            "id": "1190",
+            "text": "Ett smalt fordon",
+            "isCorrect": false
+          }
+        ]
       },
       {
         "id": "324",
@@ -7349,6 +8275,1397 @@
             "isCorrect": true
           }
         ]
+      }
+    ]
+  },
+  {
+    "id": "komarken-1",
+    "title": "Komarken Övningsprov 1",
+    "category": "YKB",
+    "questions": [
+      {
+        "id": "k1",
+        "type": "multiple-choice",
+        "text": "Ett kolli väger 800 kg och har följande dimensioner: Höjd: 3,0 m, Längd: 1,0 m, Bredd: 1,0 m. Hur många överfallssurrningar behövs för att förhindra att godset tippar framåt?",
+        "image": "/images/ykb/overfall_tipp_bredd.png",
+        "options": [
+          {
+            "id": "k1-a",
+            "text": "1 st",
+            "isCorrect": false
+          },
+          {
+            "id": "k1-b",
+            "text": "2 st",
+            "isCorrect": true
+          },
+          {
+            "id": "k1-c",
+            "text": "3 st",
+            "isCorrect": false
+          },
+          {
+            "id": "k1-d",
+            "text": "4 st",
+            "isCorrect": false
+          }
+        ],
+        "explanation": "Rätt svar är 2 st. \n\nFörklaring: Tipprisken är hög eftersom godset är mycket högt (3,0 m) i förhållande till sin korta bas (1,0 m). Vid en kraftig inbromsning uppstår stora krafter som vill välta godset framåt. \n\nEn enda överfallssurrning räcker inte för att hålla emot dessa krafter. Enligt lastsäkringsreglerna krävs minst två surrningar för att ge tillräcklig stabilitet och säkerhet vid dessa dimensioner och vikt."
+      },
+      {
+        "id": "k2",
+        "type": "multiple-choice",
+        "text": "Vad får du för omräkningsfaktor om du har ett spännband som har ett STF-värde om 600 daN?",
+        "image": "/images/ykb/Lable_Explanation-v2_800x800-1-131x300.png",
+        "options": [
+          {
+            "id": "k2-a",
+            "text": "1.0",
+            "isCorrect": false
+          },
+          {
+            "id": "k2-b",
+            "text": "1.5",
+            "isCorrect": true
+          },
+          {
+            "id": "k2-c",
+            "text": "2.0",
+            "isCorrect": false
+          },
+          {
+            "id": "k2-d",
+            "text": "0.8",
+            "isCorrect": false
+          }
+        ],
+        "explanation": "Rätt svar är 1.5. \n\nFörklaring: STF (Standard Tension Force) är den kraft du pressar ner godset med. Ett standardband har ofta STF 400 daN. \n\nEtt band med STF 600 daN är starkare och pressar hårdare, vilket ger bättre friktion. Därför får man räkna upp friktionskraften med faktorn 1.5 (600/400 = 1.5) i lastsäkringsberäkningarna. Detta innebär i praktiken att du kan säkra tyngre gods med färre band jämfört med standardband."
+      },
+      {
+        "id": "k3",
+        "type": "multiple-choice",
+        "text": "Vad står LC för på ett spännband?",
+        "image": "/images/ykb/Lable_Explanation-v2_800x800-1-131x300.png",
+        "options": [
+          {
+            "id": "k3-a",
+            "text": "Load Capacity (Lastkapacitet)",
+            "isCorrect": false
+          },
+          {
+            "id": "k3-b",
+            "text": "Lashing Capacity (Surrningsstyrka)",
+            "isCorrect": true
+          },
+          {
+            "id": "k3-c",
+            "text": "Limit Control (Gränskontroll)",
+            "isCorrect": false
+          },
+          {
+            "id": "k3-d",
+            "text": "Load Control (Lastkontroll)",
+            "isCorrect": false
+          }
+        ],
+        "explanation": "Rätt svar är Lashing Capacity (Surrningsstyrka). \n\nFörklaring: LC anger den maximala kraft spännbandet tål vid rakt drag (direktsurrning) innan det riskerar att gå sönder. Det ska inte förväxlas med STF som gäller vid överfallssurrning. LC är avgörande när du 'kryss-surrar' eller 'grimsurrar' gods för att förhindra att det glider."
+      },
+      {
+        "id": "k4",
+        "type": "multiple-choice",
+        "text": "Vad står STF på ett spännband för?",
+        "image": "/images/ykb/Lable_Explanation-v2_800x800-1-131x300.png",
+        "options": [
+          {
+            "id": "k4-a",
+            "text": "Standard Tension Force (Standardspännkraft)",
+            "isCorrect": true
+          },
+          {
+            "id": "k4-b",
+            "text": "Safe Transport Force (Säker transportkraft)",
+            "isCorrect": false
+          },
+          {
+            "id": "k4-c",
+            "text": "Static Tension Force (Statisk spännkraft)",
+            "isCorrect": false
+          },
+          {
+            "id": "k4-d",
+            "text": "System Total Force (Systemets totala kraft)",
+            "isCorrect": false
+          }
+        ],
+        "explanation": "Rätt svar är Standard Tension Force (Standardspännkraft). \n\nFörklaring: STF är ett mått på hur hårt bandet pressar ner godset mot flaket när du dragit åt spännanordningen (ratchen) med normal handkraft (50 daN). \n\nDetta är det viktigaste värdet vid överfallssurrning, eftersom det är nedpressningskraften som skapar den friktion som håller godset på plats."
+      },
+      {
+        "id": "k5",
+        "type": "multiple-choice",
+        "text": "Vilken är maximal bruttovikt för en tvåaxlig lastbil på svenska vägar?",
+        "image": "/images/ykb/Totalvikt.png",
+        "options": [
+          {
+            "id": "k5-a",
+            "text": "16 ton",
+            "isCorrect": false
+          },
+          {
+            "id": "k5-b",
+            "text": "18 ton",
+            "isCorrect": true
+          },
+          {
+            "id": "k5-c",
+            "text": "20 ton",
+            "isCorrect": false
+          },
+          {
+            "id": "k5-d",
+            "text": "24 ton",
+            "isCorrect": false
+          }
+        ],
+        "explanation": "Rätt svar är 18 ton. \n\nFörklaring: På det svenska vägnätet (BK1) är grundregeln att ett tvåaxligt motorfordon får väga högst 18 ton. \n\nDetta gäller oavsett om axlarna tekniskt klarar mer. För att få väga mer krävs fler axlar (t.ex. 3 axlar ger max 26/28 ton)."
+      },
+      {
+        "id": "k6",
+        "type": "multiple-choice",
+        "text": "Vad heter denna lastsymbol?",
+        "image": "/images/ykb/denna-sida-upp.png",
+        "options": [
+          {
+            "id": "k6-a",
+            "text": "Denna sida upp",
+            "isCorrect": true
+          },
+          {
+            "id": "k6-b",
+            "text": "Skyddas mot väta",
+            "isCorrect": false
+          },
+          {
+            "id": "k6-c",
+            "text": "Ömtåligt gods",
+            "isCorrect": false
+          },
+          {
+            "id": "k6-d",
+            "text": "Får ej staplas",
+            "isCorrect": false
+          }
+        ],
+        "explanation": "Rätt svar är Denna sida upp. \n\nFörklaring: Symbolen med två pilar visar att godset måste transporteras stående med pilarna pekande uppåt. \n\nOm godset läggs ner eller vänds upp och ner kan innehållet skadas, läcka ut eller förstöra emballaget. Det är viktigt att respektera denna märkning vid både lastning och körning."
+      },
+      {
+        "id": "k7",
+        "type": "multiple-choice",
+        "text": "Vad heter denna lastsymbol?",
+        "image": "/images/ykb/csm_ikon_benyt_ikke_kroge_297f4d273e.png",
+        "options": [
+          {
+            "id": "k7-a",
+            "text": "Denna sida upp",
+            "isCorrect": false
+          },
+          {
+            "id": "k7-b",
+            "text": "Använd ej krokar",
+            "isCorrect": true
+          },
+          {
+            "id": "k7-c",
+            "text": "Ömtåligt gods",
+            "isCorrect": false
+          },
+          {
+            "id": "k7-d",
+            "text": "Temperaturkänsligt",
+            "isCorrect": false
+          }
+        ],
+        "explanation": "Rätt svar är Använd ej krokar. \n\nFörklaring: Symbolen visar en handkrok som är överkryssad. Detta betyder att man inte får använda lyftkrokar (som stuverikrokar) direkt i godset eller emballaget vid hantering. \n\nAnvändning av krokar kan punktera säckar, repa ytor eller skada känsligt innehåll."
+      },
+      {
+        "id": "k8",
+        "type": "multiple-choice",
+        "text": "Vad heter denna lastsymbol?",
+        "image": "/images/ykb/csm_IKON_Temperaturgrænse_5033aa4d8f.png",
+        "options": [
+          {
+            "id": "k8-a",
+            "text": "Återvinningsbart",
+            "isCorrect": false
+          },
+          {
+            "id": "k8-b",
+            "text": "Skyddas mot väta",
+            "isCorrect": false
+          },
+          {
+            "id": "k8-c",
+            "text": "Temperaturkänsligt",
+            "isCorrect": true
+          },
+          {
+            "id": "k8-d",
+            "text": "Får ej staplas",
+            "isCorrect": false
+          }
+        ],
+        "explanation": "Rätt svar är Temperaturkänsligt. \n\nFörklaring: Termometern indikerar att godset är känsligt för kyla eller värme. Ofta står det angivet inom vilka temperaturintervall (t.ex. +2°C till +8°C) godset måste hållas. \n\nDetta är vanligt vid transport av livsmedel, färg eller mediciner. Fel temperatur kan göra godset oanvändbart."
+      },
+      {
+        "id": "k9",
+        "type": "multiple-choice",
+        "text": "Du ska transportera ett gods med märkning enligt bilden. Vilken information får du av denna märkning?",
+        "image": "/images/ykb/dmeu_ac300_1_lq11_1_stdlang_all_-300x300.gif",
+        "options": [
+          {
+            "id": "k9-a",
+            "text": "Att godset är temperaturkänsligt",
+            "isCorrect": false
+          },
+          {
+            "id": "k9-b",
+            "text": "Att godset är farligt gods i begränsad mängd",
+            "isCorrect": true
+          },
+          {
+            "id": "k9-c",
+            "text": "Att godset måste surras extra noga",
+            "isCorrect": false
+          },
+          {
+            "id": "k9-d",
+            "text": "Att godset är tullpliktigt",
+            "isCorrect": false
+          }
+        ],
+        "explanation": "Rätt svar är Att godset är farligt gods i begränsad mängd (Limited Quantity). \n\nFörklaring: Denna symbol (diamant med svarta hörn) används när farligt gods är förpackat i små mängder per innerförpackning. \n\nDet innebär vissa lättnader i ADR-reglerna (t.ex. behöver du oftast inte ha orange skylt på bilen), men du måste fortfarande vara medveten om att det är farligt gods och hantera det varsamt."
+      },
+      {
+        "id": "k10",
+        "type": "multiple-choice",
+        "text": "Vad heter denna typ av förpackning?",
+        "image": "/images/ykb/ibc-tank-ibc-behallare-ibc-container-300x225.jpg",
+        "options": [
+          {
+            "id": "k10-a",
+            "text": "EUR-pall",
+            "isCorrect": false
+          },
+          {
+            "id": "k10-b",
+            "text": "IBC-behållare",
+            "isCorrect": true
+          },
+          {
+            "id": "k10-c",
+            "text": "Storsäck",
+            "isCorrect": false
+          },
+          {
+            "id": "k10-d",
+            "text": "Fat",
+            "isCorrect": false
+          }
+        ],
+        "explanation": "Rätt svar är IBC-behållare. \n\nFörklaring: IBC står för Intermediate Bulk Container. Det är en mycket vanlig kubisk behållare (ofta 1000 liter) placerad på en pall, skyddad av en metallbur. \n\nDen används för att transportera vätskor (kemikalier, livsmedel, vatten) eller pulver. Den är effektivare att stapla än runda fat."
+      },
+      {
+        "id": "k11",
+        "type": "multiple-choice",
+        "text": "Vad har fordonet för tjänstevikt enligt registreringsbeviset?",
+        "image": "/images/ykb/Tjanstevikt.png",
+        "options": [
+          {
+            "id": "k11-a",
+            "text": "Anges i registreringsbeviset",
+            "isCorrect": true
+          },
+          {
+            "id": "k11-b",
+            "text": "Totalvikt minus maxlast",
+            "isCorrect": true
+          },
+          {
+            "id": "k11-c",
+            "text": "Skattevikt plus last",
+            "isCorrect": false
+          },
+          {
+            "id": "k11-d",
+            "text": "Bruttovikt minus förare",
+            "isCorrect": false
+          }
+        ],
+        "explanation": "Rätt svar är Anges i registreringsbeviset (och Totalvikt minus maxlast är också matematiskt korrekt, men frågan syftar på definitionen). \n\nFörklaring: Tjänstevikten är bilens vikt 'i drift'. Det inkluderar chassi, hytt, påbyggnad, full tank, verktyg, reservhjul OCH föraren (schablonvikt 75 kg). \n\nDet är denna vikt du 'startar med' innan du lägger på någon last. Du hittar den exakta vikten i fordonets registreringsbevis."
+      },
+      {
+        "id": "k12",
+        "type": "multiple-choice",
+        "text": "Vad har fordonet för maxlast?",
+        "image": "/images/ykb/Maxlast.png",
+        "options": [
+          {
+            "id": "k12-a",
+            "text": "Skillnaden mellan totalvikt och tjänstevikt",
+            "isCorrect": true
+          },
+          {
+            "id": "k12-b",
+            "text": "Samma som bruttovikten",
+            "isCorrect": false
+          },
+          {
+            "id": "k12-c",
+            "text": "Anges ej i registreringsbeviset",
+            "isCorrect": false
+          },
+          {
+            "id": "k12-d",
+            "text": "Maximalt axeltryck",
+            "isCorrect": false
+          }
+        ],
+        "explanation": "Rätt svar är Skillnaden mellan totalvikt och tjänstevikt. \n\nFörklaring: Maxlast är så mycket gods och passagerare du lagligt får lasta på bilen. \n\nFormeln är: Totalvikt - Tjänstevikt = Maxlast. \nKom ihåg att om du har extra utrustning som inte ingår i tjänstevikten (t.ex. snökedjor, extra inredning) så minskar din tillgängliga lastvikt."
+      },
+      {
+        "id": "k13",
+        "type": "multiple-choice",
+        "text": "Vad har fordonet för skattevikt?",
+        "image": "/images/ykb/Skattevikt.png",
+        "options": [
+          {
+            "id": "k13-a",
+            "text": "Den vikt fordonsskatten baseras på",
+            "isCorrect": true
+          },
+          {
+            "id": "k13-b",
+            "text": "Samma som tjänstevikten",
+            "isCorrect": false
+          },
+          {
+            "id": "k13-c",
+            "text": "Samma som bruttovikten",
+            "isCorrect": false
+          },
+          {
+            "id": "k13-d",
+            "text": "Vikten av lasten",
+            "isCorrect": false
+          }
+        ],
+        "explanation": "Rätt svar är Den vikt fordonsskatten baseras på. \n\nFörklaring: Skattevikten avgör hur mycket skatt som ska betalas för fordonet. \n\nFör de flesta lastbilar är skattevikten samma som totalvikten. Men om bilen inte utnyttjas fullt ut kan den vara 'nedklassad' till en lägre skattevikt för att få lägre skatt, men då får man heller inte lasta den fullt."
+      },
+      {
+        "id": "k14",
+        "type": "multiple-choice",
+        "text": "Vilken är maximal bruttovikt för en treaxlig lastbil där drivaxeln har tvillingmontage och luftfjädring?",
+        "image": "/images/ykb/TvillingmontageLuftfjadring.png",
+        "options": [
+          {
+            "id": "k14-a",
+            "text": "24 ton",
+            "isCorrect": false
+          },
+          {
+            "id": "k14-b",
+            "text": "26 ton",
+            "isCorrect": false
+          },
+          {
+            "id": "k14-c",
+            "text": "28 ton",
+            "isCorrect": true
+          },
+          {
+            "id": "k14-d",
+            "text": "32 ton",
+            "isCorrect": false
+          }
+        ],
+        "explanation": "Rätt svar är 28 ton. \n\nFörklaring: Grundregeln för en 3-axlig bil är max 25 eller 26 ton beroende på axelavstånd. \n\nMen det finns ett viktigt undantag: Om drivaxeln har tvillingmontage (dubbla hjul) OCH luftfjädring (eller likvärdig fjädring) så tillåts 28 ton på BK1-väg. Detta är för att luftfjädringen är skonsammare mot vägen."
+      },
+      {
+        "id": "k15",
+        "type": "multiple-choice",
+        "text": "Vad betyder denna lastsymbol?",
+        "image": "/images/ykb/Slingas-här.png",
+        "options": [
+          {
+            "id": "k15-a",
+            "text": "Får ej lyftas",
+            "isCorrect": false
+          },
+          {
+            "id": "k15-b",
+            "text": "Slingas här",
+            "isCorrect": true
+          },
+          {
+            "id": "k15-c",
+            "text": "Tyngdpunkt",
+            "isCorrect": false
+          },
+          {
+            "id": "k15-d",
+            "text": "Surrningspunkt",
+            "isCorrect": false
+          }
+        ],
+        "explanation": "Rätt svar är Slingas här. \n\nFörklaring: Symbolen (ofta en kättinglänk) visar var det är säkert och förstärkt för att fästa lyftredskap (sling, kätting, stropp). \n\nAtt lyfta på andra ställen kan skada godset eller göra att det tippar vid lyftet."
+      },
+      {
+        "id": "k16",
+        "type": "multiple-choice",
+        "text": "Vad betyder denna symbol?",
+        "image": "/images/ykb/csm_ikon_klem_her_2d43702a4f.png",
+        "options": [
+          {
+            "id": "k16-a",
+            "text": "Klämrisk",
+            "isCorrect": false
+          },
+          {
+            "id": "k16-b",
+            "text": "Kläm här",
+            "isCorrect": true
+          },
+          {
+            "id": "k16-c",
+            "text": "Får ej klämmas",
+            "isCorrect": false
+          },
+          {
+            "id": "k16-d",
+            "text": "Lyftpunkt",
+            "isCorrect": false
+          }
+        ],
+        "explanation": "Rätt svar är Kläm här. \n\nFörklaring: Symbolen visar var man ska placera klämarmarna om man använder en truck med klämaggregat (vanligt vid hantering av vitvaror eller pappersrullar). \n\nAtt klämma på fel ställe kan krossa innehållet."
+      },
+      {
+        "id": "k17",
+        "type": "multiple-choice",
+        "text": "Vad kallas denna typ av lastbärare?",
+        "image": "/images/ykb/växelflak-300x205.jpg",
+        "options": [
+          {
+            "id": "k17-a",
+            "text": "Växelflak",
+            "isCorrect": true
+          },
+          {
+            "id": "k17-b",
+            "text": "Container",
+            "isCorrect": false
+          },
+          {
+            "id": "k17-c",
+            "text": "Semitrailer",
+            "isCorrect": false
+          },
+          {
+            "id": "k17-d",
+            "text": "Kasett",
+            "isCorrect": false
+          }
+        ],
+        "explanation": "Rätt svar är Växelflak. \n\nFörklaring: Ett växelflak är en lastbärare som står på fyra stödben. Lastbilen backar in under flaket och lyfter upp det med sin luftfjädring. \n\nDet är ett mycket flexibelt system som gör att man kan lasta/lossa flaket medan bilen kör ett annat uppdrag."
+      },
+      {
+        "id": "k18",
+        "type": "multiple-choice",
+        "text": "Vad varnar denna skylt för?",
+        "image": "/images/ykb/bredlast-300x232.gif",
+        "options": [
+          {
+            "id": "k18-a",
+            "text": "Lång last",
+            "isCorrect": false
+          },
+          {
+            "id": "k18-b",
+            "text": "Bred last",
+            "isCorrect": true
+          },
+          {
+            "id": "k18-c",
+            "text": "Tung last",
+            "isCorrect": false
+          },
+          {
+            "id": "k18-d",
+            "text": "Farlig last",
+            "isCorrect": false
+          }
+        ],
+        "explanation": "Rätt svar är Bred last. \n\nFörklaring: Skylten används vid dispens transporter där lasten är bredare än normalt (oftast över 260 cm). \n\nDen varnar mötande trafik och bakomvarande att fordonet tar upp mer plats i sidled än vad som är vanligt, vilket är extra viktigt på smala vägar."
+      },
+      {
+        "id": "k19",
+        "type": "multiple-choice",
+        "text": "Vad visar denna symbol?",
+        "image": "/images/ykb/ankare-300x218.png",
+        "options": [
+          {
+            "id": "k19-a",
+            "text": "Tyngdpunkt",
+            "isCorrect": false
+          },
+          {
+            "id": "k19-b",
+            "text": "Surrningspunkt/Förankringspunkt",
+            "isCorrect": true
+          },
+          {
+            "id": "k19-c",
+            "text": "Lyftpunkt",
+            "isCorrect": false
+          },
+          {
+            "id": "k19-d",
+            "text": "Får ej staplas",
+            "isCorrect": false
+          }
+        ],
+        "explanation": "Rätt svar är Surrningspunkt/Förankringspunkt. \n\nFörklaring: Ankarsymbolen markerar punkter på godset som är starka nog att fästa spännband eller kättingar i. \n\nDet är viktigt att använda dessa punkter för att inte skada godset och för att vara säker på att surrningen håller vid en inbromsning."
+      }
+    ]
+  },
+  {
+    "id": "ce-1",
+    "title": "CE - Tung Lastbil med Släp",
+    "category": "CE",
+    "questions": [
+      {
+        "id": "ce-1-1",
+        "type": "multiple-choice",
+        "text": "Vilken är den högsta tillåtna bruttovikten för ett fordonståg på BK1-väg?",
+        "image": null,
+        "options": [
+          {
+            "id": "ce-1-1-a",
+            "text": "60 ton",
+            "isCorrect": false
+          },
+          {
+            "id": "ce-1-1-b",
+            "text": "64 ton (74 ton på vissa vägar)",
+            "isCorrect": true
+          },
+          {
+            "id": "ce-1-1-c",
+            "text": "50 ton",
+            "isCorrect": false
+          },
+          {
+            "id": "ce-1-1-d",
+            "text": "40 ton",
+            "isCorrect": false
+          }
+        ],
+        "explanation": "På BK1-vägar är den generella högsta bruttovikten 64 ton, förutsatt att fordonet är godkänt för det och axelavstånden tillåter det. På vissa utvalda vägar (BK4) tillåts upp till 74 ton."
+      },
+      {
+        "id": "ce-1-2",
+        "type": "multiple-choice",
+        "text": "Vad är den maximala längden för ett fordonståg (lastbil + släp) i Sverige (utan dispens)?",
+        "image": null,
+        "options": [
+          {
+            "id": "ce-1-2-a",
+            "text": "24,00 meter",
+            "isCorrect": true
+          },
+          {
+            "id": "ce-1-2-b",
+            "text": "25,25 meter",
+            "isCorrect": false
+          },
+          {
+            "id": "ce-1-2-c",
+            "text": "18,75 meter",
+            "isCorrect": false
+          },
+          {
+            "id": "ce-1-2-d",
+            "text": "22,00 meter",
+            "isCorrect": false
+          }
+        ],
+        "explanation": "Den generella maxlängden är 24 meter. Med vissa specifika kombinationer (modulsystemet/EMS) är dock 25,25 meter tillåtet på de flesta större vägar, men grundregeln är 24 meter."
+      },
+      {
+        "id": "ce-1-3",
+        "type": "multiple-choice",
+        "text": "Vad händer om du kopplar loss tryckluftsledningen (röda slangen) till släpet?",
+        "image": null,
+        "options": [
+          {
+            "id": "ce-1-3-a",
+            "text": "Släpets färdbroms slutar fungera helt",
+            "isCorrect": false
+          },
+          {
+            "id": "ce-1-3-b",
+            "text": "Släpet bromsas automatiskt (katastrofbroms)",
+            "isCorrect": true
+          },
+          {
+            "id": "ce-1-3-c",
+            "text": "Inget händer förrän du bromsar med fotpedalen",
+            "isCorrect": false
+          },
+          {
+            "id": "ce-1-3-d",
+            "text": "ABS-systemet varnar men bromsarna fungerar",
+            "isCorrect": false
+          }
+        ],
+        "explanation": "När matartrycket (röda slangen) försvinner, ska släpets bromssystem automatiskt ansätta bromsarna. Detta kallas katastrofbroms och är en säkerhetsfunktion om släpet skulle lossna."
+      },
+      {
+        "id": "ce-1-4",
+        "type": "multiple-choice",
+        "text": "Vilken färg har normalt styrledningen (manöverledningen) för tryckluftsbromsar mellan bil och släp?",
+        "image": null,
+        "options": [
+          {
+            "id": "ce-1-4-a",
+            "text": "Röd",
+            "isCorrect": false
+          },
+          {
+            "id": "ce-1-4-b",
+            "text": "Blå",
+            "isCorrect": false
+          },
+          {
+            "id": "ce-1-4-c",
+            "text": "Gul",
+            "isCorrect": true
+          },
+          {
+            "id": "ce-1-4-d",
+            "text": "Svart",
+            "isCorrect": false
+          }
+        ],
+        "explanation": "Gul slang är manöverledningen (styrledningen) som reglerar bromskraften när du trampar på pedalen. Röd slang är matarledningen som fyller släpets tankar."
+      },
+      {
+        "id": "ce-1-5",
+        "type": "multiple-choice",
+        "text": "Hur kontrollerar du enklast att kopplingen (vändskivan/draget) har låst ordentligt vid tillkoppling?",
+        "image": null,
+        "options": [
+          {
+            "id": "ce-1-5-a",
+            "text": "Genom att köra framåt med släpet bromsat (rycktest)",
+            "isCorrect": true
+          },
+          {
+            "id": "ce-1-5-b",
+            "text": "Genom att lyssna efter ett klick",
+            "isCorrect": false
+          },
+          {
+            "id": "ce-1-5-c",
+            "text": "Genom att titta i backspegeln",
+            "isCorrect": false
+          },
+          {
+            "id": "ce-1-5-d",
+            "text": "Det behövs inte om indikatorlampan är grön",
+            "isCorrect": false
+          }
+        ],
+        "explanation": "Ett rycktest (försöka köra framåt med släpet bromsat) är det säkraste sättet att fysiskt känna att kopplingen har låst och håller."
+      },
+      {
+        "id": "ce-1-6",
+        "type": "multiple-choice",
+        "text": "Vad är 'saxning' (jack-knifing)?",
+        "image": null,
+        "options": [
+          {
+            "id": "ce-1-6-a",
+            "text": "När släpet glider ut åt sidan och ekipaget viker sig",
+            "isCorrect": true
+          },
+          {
+            "id": "ce-1-6-b",
+            "text": "När man kopplar loss släpet under färd",
+            "isCorrect": false
+          },
+          {
+            "id": "ce-1-6-c",
+            "text": "När man backar rakt bakåt",
+            "isCorrect": false
+          },
+          {
+            "id": "ce-1-6-d",
+            "text": "En typ av lastsäkring",
+            "isCorrect": false
+          }
+        ],
+        "explanation": "Saxning sker oftast vid kraftig inbromsning på halt väglag om släpets hjul låser sig eller tappar greppet, vilket gör att släpet trycker på och viker sig i förhållande till dragbilen."
+      },
+      {
+        "id": "ce-1-7",
+        "type": "multiple-choice",
+        "text": "Vilken behörighet krävs för att köra en tung lastbil med ett släp vars totalvikt överstiger 750 kg?",
+        "image": null,
+        "options": [
+          {
+            "id": "ce-1-7-a",
+            "text": "C",
+            "isCorrect": false
+          },
+          {
+            "id": "ce-1-7-b",
+            "text": "CE",
+            "isCorrect": true
+          },
+          {
+            "id": "ce-1-7-c",
+            "text": "C1",
+            "isCorrect": false
+          },
+          {
+            "id": "ce-1-7-d",
+            "text": "B96",
+            "isCorrect": false
+          }
+        ],
+        "explanation": "För tung lastbil (C) med tungt släp (totalvikt över 750 kg) krävs behörighet CE."
+      },
+      {
+        "id": "ce-1-8",
+        "type": "multiple-choice",
+        "text": "Vad innebär begreppet 'svepyta' vid körning med släp?",
+        "image": null,
+        "options": [
+          {
+            "id": "ce-1-8-a",
+            "text": "Ytan som vindrutetorkarna täcker",
+            "isCorrect": false
+          },
+          {
+            "id": "ce-1-8-b",
+            "text": "Den yta ekipaget tar upp vid sväng (skillnaden mellan innersta och yttersta hjulets spår)",
+            "isCorrect": true
+          },
+          {
+            "id": "ce-1-8-c",
+            "text": "Ytan på flaket",
+            "isCorrect": false
+          },
+          {
+            "id": "ce-1-8-d",
+            "text": "Markfrigången under släpet",
+            "isCorrect": false
+          }
+        ],
+        "explanation": "Svepytan är det område som fordonet 'sopar' över vid en sväng. Med släp blir denna yta betydligt större än för en ensam bil, eftersom släpet genar i kurvor (spåravvikelse) och framdelen svänger utåt."
+      },
+      {
+        "id": "ce-1-9",
+        "type": "multiple-choice",
+        "text": "Får du parkera ett släp på en huvudled?",
+        "image": null,
+        "options": [
+          {
+            "id": "ce-1-9-a",
+            "text": "Ja, om det har parkeringsljus",
+            "isCorrect": false
+          },
+          {
+            "id": "ce-1-9-b",
+            "text": "Nej, generellt inte",
+            "isCorrect": true
+          },
+          {
+            "id": "ce-1-9-c",
+            "text": "Ja, högst 24 timmar",
+            "isCorrect": false
+          },
+          {
+            "id": "ce-1-9-d",
+            "text": "Ja, om det är kopplat till bilen",
+            "isCorrect": false
+          }
+        ],
+        "explanation": "På huvudled råder generellt parkeringsförbud för alla fordon, inklusive släp. Endast stannande för på/avstigning eller lastning/lossning är tillåtet (om inte annat anges)."
+      },
+      {
+        "id": "ce-1-10",
+        "type": "multiple-choice",
+        "text": "Vilken säkerhetsutrustning är obligatorisk på tunga släp?",
+        "image": null,
+        "options": [
+          {
+            "id": "ce-1-10-a",
+            "text": "Underkörningsskydd bak och på sidorna",
+            "isCorrect": true
+          },
+          {
+            "id": "ce-1-10-b",
+            "text": "Backkamera",
+            "isCorrect": false
+          },
+          {
+            "id": "ce-1-10-c",
+            "text": "Reservhjul",
+            "isCorrect": false
+          },
+          {
+            "id": "ce-1-10-d",
+            "text": "Brandsläckare",
+            "isCorrect": false
+          }
+        ],
+        "explanation": "Tunga släp måste ha underkörningsskydd baktill och på sidorna för att förhindra att mindre fordon (t.ex. personbilar) hamnar under släpet vid en kollision."
+      }
+    ]
+  },
+  {
+    "id": "ce-coupling-2",
+    "title": "CE - Kopplingsanordningar (Fördjupning)",
+    "category": "CE",
+    "questions": [
+      {
+        "id": "ce-c2-1",
+        "type": "multiple-choice",
+        "text": "Du har kopplat ett släp med VBG-drag. Det röda signalstiftet är helt intryckt. Vad betyder det?",
+        "image": null,
+        "options": [
+          {
+            "id": "ce-c2-1-a",
+            "text": "Kopplingen är öppen",
+            "isCorrect": false
+          },
+          {
+            "id": "ce-c2-1-b",
+            "text": "Kopplingen är stängd och säkrad",
+            "isCorrect": true
+          },
+          {
+            "id": "ce-c2-1-c",
+            "text": "Kopplingen är stängd men ej säkrad",
+            "isCorrect": false
+          },
+          {
+            "id": "ce-c2-1-d",
+            "text": "Det indikerar fel på mekanismen",
+            "isCorrect": false
+          }
+        ],
+        "explanation": "När det röda signalstiftet på en VBG-koppling är helt intryckt (i nivå med höljet) indikerar det att kopplingsbulten är nere och mekanismen är dubbellåst och säkrad."
+      },
+      {
+        "id": "ce-c2-2",
+        "type": "multiple-choice",
+        "text": "I vilken ordning bör du ansluta luftslangarna när du kopplar till ett släp?",
+        "image": null,
+        "options": [
+          {
+            "id": "ce-c2-2-a",
+            "text": "Röd (matarledning) först, sedan Gul (manöverledning)",
+            "isCorrect": false
+          },
+          {
+            "id": "ce-c2-2-b",
+            "text": "Gul (manöverledning) först, sedan Röd (matarledning)",
+            "isCorrect": true
+          },
+          {
+            "id": "ce-c2-2-c",
+            "text": "Det spelar ingen roll",
+            "isCorrect": false
+          },
+          {
+            "id": "ce-c2-2-d",
+            "text": "Båda samtidigt",
+            "isCorrect": false
+          }
+        ],
+        "explanation": "Du bör ansluta den gula slangen (manöverledning) först. Om du ansluter den röda (matarledning) först och parkeringsbromsen på släpet inte är åtdragen, finns risk att släpet rullar iväg när bromsarna lossas av lufttrycket. Genom att ta gul först (som är trycklös) undviker du detta, men praxis är ändå att alltid säkra släpet med klossar."
+      },
+      {
+        "id": "ce-c2-3",
+        "type": "multiple-choice",
+        "text": "Vad är en 'Dolly'?",
+        "image": null,
+        "options": [
+          {
+            "id": "ce-c2-3-a",
+            "text": "En typ av kran",
+            "isCorrect": false
+          },
+          {
+            "id": "ce-c2-3-b",
+            "text": "En liten kärra som omvandlar en semitrailer till ett släp",
+            "isCorrect": true
+          },
+          {
+            "id": "ce-c2-3-c",
+            "text": "En kopplingstyp för personbilar",
+            "isCorrect": false
+          },
+          {
+            "id": "ce-c2-3-d",
+            "text": "Ett stödben",
+            "isCorrect": false
+          }
+        ],
+        "explanation": "En dolly är en liten axelkonstruktion (kärra) med en vändskiva. Den kopplas till en lastbil med dragstång och gör det möjligt att dra en semitrailer som ett vanligt släp."
+      },
+      {
+        "id": "ce-c2-4",
+        "type": "multiple-choice",
+        "text": "Hur kontrollerar du att vändskivan har låst kring kungstappen (kingpin)?",
+        "image": null,
+        "options": [
+          {
+            "id": "ce-c2-4-a",
+            "text": "Genom att bara titta på handtaget",
+            "isCorrect": false
+          },
+          {
+            "id": "ce-c2-4-b",
+            "text": "Genom att göra ett rycktest och visuellt kontrollera att låskilen är i låst läge (ofta med ficklampa underifrån)",
+            "isCorrect": true
+          },
+          {
+            "id": "ce-c2-4-c",
+            "text": "Genom att lyssna på ljudet vid koppling",
+            "isCorrect": false
+          },
+          {
+            "id": "ce-c2-4-d",
+            "text": "Genom att köra iväg försiktigt",
+            "isCorrect": false
+          }
+        ],
+        "explanation": "Ett rycktest är obligatoriskt, men du bör också visuellt kontrollera mekanismen (att låskilen/haken ligger an mot kungstappen) för att vara helt säker. Många tappade trailers beror på 'falsk låsning'."
+      },
+      {
+        "id": "ce-c2-5",
+        "type": "multiple-choice",
+        "text": "Vad händer om du glömmer att veva upp stödbenen på en semitrailer innan avfärd?",
+        "image": null,
+        "options": [
+          {
+            "id": "ce-c2-5-a",
+            "text": "Inget, de fälls upp automatiskt",
+            "isCorrect": false
+          },
+          {
+            "id": "ce-c2-5-b",
+            "text": "Du kommer att skada stödbenen, vägbanan och riskerar att fastna vid ojämnheter (t.ex. järnvägsövergångar)",
+            "isCorrect": true
+          },
+          {
+            "id": "ce-c2-5-c",
+            "text": "Trailern blir stabilare",
+            "isCorrect": false
+          },
+          {
+            "id": "ce-c2-5-d",
+            "text": "Bränsleförbrukningen ökar marginellt",
+            "isCorrect": false
+          }
+        ],
+        "explanation": "Stödbenen slår i marken vid minsta ojämnhet, vilket kan leda till allvarliga skador på trailern eller att ekipaget fastnar, t.ex. på en järnvägsövergång vilket är livsfarligt."
+      },
+      {
+        "id": "ce-c2-6",
+        "type": "multiple-choice",
+        "text": "Vilken funktion har ABS-kontakten (ISO 7638) mellan bil och släp?",
+        "image": null,
+        "options": [
+          {
+            "id": "ce-c2-6-a",
+            "text": "Den styr enbart belysningen",
+            "isCorrect": false
+          },
+          {
+            "id": "ce-c2-6-b",
+            "text": "Den ger ström till släpets ABS/EBS-system och överför bromssignaler (CAN-bus)",
+            "isCorrect": true
+          },
+          {
+            "id": "ce-c2-6-c",
+            "text": "Den laddar släpets batteri",
+            "isCorrect": false
+          },
+          {
+            "id": "ce-c2-6-d",
+            "text": "Den styr luftfjädringen",
+            "isCorrect": false
+          }
+        ],
+        "explanation": "ISO 7638-kontakten (ofta kallad ABS/EBS-kabeln) är kritisk. Den förser släpets bromsdator med ström och data. Utan den fungerar inte ABS/EBS-regleringen och bromsresponsen blir sämre."
+      },
+      {
+        "id": "ce-c2-7",
+        "type": "multiple-choice",
+        "text": "Hur mycket får en dragögla (57 mm) slitas innan den måste bytas?",
+        "image": null,
+        "options": [
+          {
+            "id": "ce-c2-7-a",
+            "text": "Max 1 mm",
+            "isCorrect": false
+          },
+          {
+            "id": "ce-c2-7-b",
+            "text": "Max 3 mm (ner till 54 mm)",
+            "isCorrect": false
+          },
+          {
+            "id": "ce-c2-7-c",
+            "text": "Max 5 mm (ner till 52 mm)",
+            "isCorrect": false
+          },
+          {
+            "id": "ce-c2-7-d",
+            "text": "Det finns specifika måttgränser (ofta max 2-3 mm slitage) som mäts med tolk",
+            "isCorrect": true
+          }
+        ],
+        "explanation": "Det finns exakta gränsvärden från tillverkaren (t.ex. VBG). Generellt är toleransen liten eftersom glapp i kopplingen ger stora dynamiska krafter som kan skada hela fordonet."
+      },
+      {
+        "id": "ce-c2-8",
+        "type": "multiple-choice",
+        "text": "Vad är en 'katastrofvajer' och när används den?",
+        "image": null,
+        "options": [
+          {
+            "id": "ce-c2-8-a",
+            "text": "En vajer som används vid bärgning",
+            "isCorrect": false
+          },
+          {
+            "id": "ce-c2-8-b",
+            "text": "En säkerhetsvajer på lätta släp (obromsade eller påskjutsbromsade) som drar åt bromsen om släpet lossnar",
+            "isCorrect": true
+          },
+          {
+            "id": "ce-c2-8-c",
+            "text": "En vajer som håller uppe stödbenen",
+            "isCorrect": false
+          },
+          {
+            "id": "ce-c2-8-d",
+            "text": "En vajer som används på tunga släp med tryckluftsbromsar",
+            "isCorrect": false
+          }
+        ],
+        "explanation": "Katastrofvajer används främst på släp med påskjutsbroms (t.ex. husvagnar, mindre släp). På tunga släp med tryckluftsbromsar sker katastrofbromsningen via tryckluften om slangen går av, så där används ingen vajer."
+      },
+      {
+        "id": "ce-c2-9",
+        "type": "multiple-choice",
+        "text": "Du ska koppla loss ett släp. Vad gör du först?",
+        "image": null,
+        "options": [
+          {
+            "id": "ce-c2-9-a",
+            "text": "Drar ut kopplingsbulten",
+            "isCorrect": false
+          },
+          {
+            "id": "ce-c2-9-b",
+            "text": "Lossar luftslangarna",
+            "isCorrect": false
+          },
+          {
+            "id": "ce-c2-9-c",
+            "text": "Ansätter släpets parkeringsbroms",
+            "isCorrect": true
+          },
+          {
+            "id": "ce-c2-9-d",
+            "text": "Veva ner stödbenen",
+            "isCorrect": false
+          }
+        ],
+        "explanation": "Säkerheten först! Du måste alltid börja med att säkra släpet så det inte kan rulla iväg. Ansätt parkeringsbromsen (och använd gärna stoppklossar) innan du gör något annat."
+      },
+      {
+        "id": "ce-c2-10",
+        "type": "multiple-choice",
+        "text": "Vad innebär det att en koppling är 'luftassisterad'?",
+        "image": null,
+        "options": [
+          {
+            "id": "ce-c2-10-a",
+            "text": "Att den kyls med luft",
+            "isCorrect": false
+          },
+          {
+            "id": "ce-c2-10-b",
+            "text": "Att du använder tryckluft för att öppna och stänga mekanismen (via ett vred i hytten eller på kopplingen)",
+            "isCorrect": true
+          },
+          {
+            "id": "ce-c2-10-c",
+            "text": "Att den är fylld med luft",
+            "isCorrect": false
+          },
+          {
+            "id": "ce-c2-10-d",
+            "text": "Att den väger mindre",
+            "isCorrect": false
+          }
+        ],
+        "explanation": "Luftassisterade kopplingar (t.ex. VBG PA) gör att föraren kan öppna kopplingen utan att behöva använda muskelkraft på en tung spak. Det minskar risken för arbetsskador."
+      }
+    ]
+  },
+  {
+    "id": "ce-advanced",
+    "title": "CE - Avancerad Körning & Teori",
+    "category": "CE",
+    "questions": [
+      {
+        "id": "ce-adv-1",
+        "type": "multiple-choice",
+        "text": "Vad är den maximala tillåtna längden för ett modulvogntåg (EMS) på godkända vägar i Sverige?",
+        "image": null,
+        "options": [
+          {
+            "id": "ce-adv-1-a",
+            "text": "24,00 meter",
+            "isCorrect": false
+          },
+          {
+            "id": "ce-adv-1-b",
+            "text": "25,25 meter",
+            "isCorrect": true
+          },
+          {
+            "id": "ce-adv-1-c",
+            "text": "30,00 meter",
+            "isCorrect": false
+          },
+          {
+            "id": "ce-adv-1-d",
+            "text": "34,50 meter",
+            "isCorrect": false
+          }
+        ],
+        "explanation": "På det utpekade vägnätet för EMS (Ett ModulSystem) får fordonståg vara upp till 25,25 meter långa. Grundregeln på övriga vägar är 24 meter."
+      },
+      {
+        "id": "ce-adv-2",
+        "type": "multiple-choice",
+        "text": "Vad är den högsta bruttovikten som tillåts på BK4-vägar?",
+        "image": null,
+        "options": [
+          {
+            "id": "ce-adv-2-a",
+            "text": "60 ton",
+            "isCorrect": false
+          },
+          {
+            "id": "ce-adv-2-b",
+            "text": "64 ton",
+            "isCorrect": false
+          },
+          {
+            "id": "ce-adv-2-c",
+            "text": "74 ton",
+            "isCorrect": true
+          },
+          {
+            "id": "ce-adv-2-d",
+            "text": "80 ton",
+            "isCorrect": false
+          }
+        ],
+        "explanation": "BK4 är en ny bärighetsklass som tillåter bruttovikter upp till 74 ton för fordon som är godkända för detta, för att effektivisera transporterna."
+      },
+      {
+        "id": "ce-adv-3",
+        "type": "multiple-choice",
+        "text": "Vad orsakar oftast en 'fällknivsverkan' (jack-knifing) vid körning på halt väglag?",
+        "image": null,
+        "options": [
+          {
+            "id": "ce-adv-3-a",
+            "text": "Att framhjulen på lastbilen låser sig",
+            "isCorrect": false
+          },
+          {
+            "id": "ce-adv-3-b",
+            "text": "Att drivhjulen på lastbilen låser sig eller spinner loss",
+            "isCorrect": true
+          },
+          {
+            "id": "ce-adv-3-c",
+            "text": "Att släpets hjul låser sig",
+            "isCorrect": false
+          },
+          {
+            "id": "ce-adv-3-d",
+            "text": "Att man svänger för lite",
+            "isCorrect": false
+          }
+        ],
+        "explanation": "Om drivhjulen tappar greppet (låser sig vid bromsning eller spinner vid gaspådrag) förlorar dragbilen sin riktningsstabilitet. Släpet, som fortfarande har rörelseenergi, trycker då på bakifrån och viker ekipaget som en fällkniv."
+      },
+      {
+        "id": "ce-adv-4",
+        "type": "multiple-choice",
+        "text": "Hur påverkas kultrycket (på en semitrailer) eller axeltrycket om du lastar tungt gods långt bak på trailern/släpet?",
+        "image": null,
+        "options": [
+          {
+            "id": "ce-adv-4-a",
+            "text": "Drivaxeltrycket ökar",
+            "isCorrect": false
+          },
+          {
+            "id": "ce-adv-4-b",
+            "text": "Drivaxeltrycket minskar, vilket kan ge sämre väggrepp",
+            "isCorrect": true
+          },
+          {
+            "id": "ce-adv-4-c",
+            "text": "Det påverkar inte dragbilen",
+            "isCorrect": false
+          },
+          {
+            "id": "ce-adv-4-d",
+            "text": "Styrförmågan ökar",
+            "isCorrect": false
+          }
+        ],
+        "explanation": "Om tyngdpunkten hamnar för långt bak fungerar axlarna på släpet som en gungbräda. Det lyfter upp fronten på släpet/trailern, vilket minskar trycket på dragbilens drivaxel. Detta kan leda till att du inte kommer upp för backar eller får sladd."
+      },
+      {
+        "id": "ce-adv-5",
+        "type": "multiple-choice",
+        "text": "Vad är 'boggilyft' och när får den användas?",
+        "image": null,
+        "options": [
+          {
+            "id": "ce-adv-5-a",
+            "text": "En kran för att lyfta boggier",
+            "isCorrect": false
+          },
+          {
+            "id": "ce-adv-5-b",
+            "text": "En funktion för att lyfta en av axlarna i en boggi för att öka trycket på den andra (drivaxeln) och minska däckslitage vid tomkörning",
+            "isCorrect": true
+          },
+          {
+            "id": "ce-adv-5-c",
+            "text": "En funktion för att tippa flaket",
+            "isCorrect": false
+          },
+          {
+            "id": "ce-adv-5-d",
+            "text": "Får endast användas vid parkering",
+            "isCorrect": false
+          }
+        ],
+        "explanation": "Boggilyften används för att spara däck när man kör tom, eller för att tillfälligt öka trycket på drivaxeln (axeltrycksförskjutning) för att få bättre grepp vid start på halt underlag."
+      },
+      {
+        "id": "ce-adv-6",
+        "type": "multiple-choice",
+        "text": "Vad är den största risken med 'spåravvikelse' (att släpet genar) vid högersväng i stadstrafik?",
+        "image": null,
+        "options": [
+          {
+            "id": "ce-adv-6-a",
+            "text": "Att man kör på trottoarkanten med framhjulet",
+            "isCorrect": false
+          },
+          {
+            "id": "ce-adv-6-b",
+            "text": "Att släpet kör över cyklister eller fotgängare som befinner sig på insidan av svängen",
+            "isCorrect": true
+          },
+          {
+            "id": "ce-adv-6-c",
+            "text": "Att man krockar med mötande trafik",
+            "isCorrect": false
+          },
+          {
+            "id": "ce-adv-6-d",
+            "text": "Att lasten ramlar av",
+            "isCorrect": false
+          }
+        ],
+        "explanation": "Den s.k. 'döda vinkeln-olyckan'. Eftersom släpet genar kraftigt måste föraren ta ut svängen rejält. Cyklister kan då tro att det finns plats på högersidan, men blir klämda när släpet skär in."
+      },
+      {
+        "id": "ce-adv-7",
+        "type": "multiple-choice",
+        "text": "Du kör ett ekipage med ABS-bromsar på både bil och släp. Vad ska du göra vid en panikbromsning på halt väglag?",
+        "image": null,
+        "options": [
+          {
+            "id": "ce-adv-7-a",
+            "text": "Pumpbromsa för att undvika låsning",
+            "isCorrect": false
+          },
+          {
+            "id": "ce-adv-7-b",
+            "text": "Bromsa försiktigt och öka trycket gradvis",
+            "isCorrect": false
+          },
+          {
+            "id": "ce-adv-7-c",
+            "text": "Trampa bromspedalen i botten och håll kvar (fullt bromstryck)",
+            "isCorrect": true
+          },
+          {
+            "id": "ce-adv-7-d",
+            "text": "Använda handbromsen",
+            "isCorrect": false
+          }
+        ],
+        "explanation": "Med ABS ska du bromsa maximalt. Systemet ser till att hjulen inte låser sig, vilket gör att du behåller styrförmågan. Att pumpbromsa eller tveka förlänger bara bromssträckan."
+      },
+      {
+        "id": "ce-adv-8",
+        "type": "multiple-choice",
+        "text": "Vad är en 'Link' i ett modulvogntåg?",
+        "image": null,
+        "options": [
+          {
+            "id": "ce-adv-8-a",
+            "text": "En kättinglänk",
+            "isCorrect": false
+          },
+          {
+            "id": "ce-adv-8-b",
+            "text": "En semitrailer som har en vändskiva baktill, vilket gör att man kan koppla en annan semitrailer på den",
+            "isCorrect": true
+          },
+          {
+            "id": "ce-adv-8-c",
+            "text": "En typ av dragstång",
+            "isCorrect": false
+          },
+          {
+            "id": "ce-adv-8-d",
+            "text": "En kommunikationsradio",
+            "isCorrect": false
+          }
+        ],
+        "explanation": "En Link är en speciell trailer som dras av en dragbil, och som i sin tur kan dra en annan trailer. Detta möjliggör kombinationen Dragbil + Link + Trailer (B-double)."
       }
     ]
   }

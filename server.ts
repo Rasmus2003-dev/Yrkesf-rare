@@ -2,6 +2,7 @@ import express from 'express';
 import { createServer as createViteServer } from 'vite';
 import Database from 'better-sqlite3';
 import path from 'path';
+import fs from 'fs';
 import { fileURLToPath } from 'url';
 import bcrypt from 'bcryptjs';
 import jwt from 'jsonwebtoken';
@@ -11,7 +12,7 @@ const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const JWT_SECRET = process.env.JWT_SECRET || 'dev-secret-key-change-in-prod';
 
 // Initialize Database
-const db = new Database('notes.db');
+const db = new Database('ykb.db');
 db.exec(`
   CREATE TABLE IF NOT EXISTS users (
     id INTEGER PRIMARY KEY AUTOINCREMENT,
@@ -21,41 +22,25 @@ db.exec(`
     created_at DATETIME DEFAULT CURRENT_TIMESTAMP
   );
 
-  CREATE TABLE IF NOT EXISTS notes (
+  CREATE TABLE IF NOT EXISTS quiz_results (
     id INTEGER PRIMARY KEY AUTOINCREMENT,
     user_id INTEGER,
-    content TEXT,
+    quiz_id TEXT,
+    quiz_title TEXT,
+    score INTEGER,
+    total_questions INTEGER,
+    percentage INTEGER,
     timestamp DATETIME DEFAULT CURRENT_TIMESTAMP,
     FOREIGN KEY(user_id) REFERENCES users(id)
   );
 
-  CREATE TABLE IF NOT EXISTS job_monitors (
+  CREATE TABLE IF NOT EXISTS bookmarks (
     id INTEGER PRIMARY KEY AUTOINCREMENT,
     user_id INTEGER,
-    query TEXT,
-    city TEXT,
-    last_checked DATETIME DEFAULT CURRENT_TIMESTAMP,
-    FOREIGN KEY(user_id) REFERENCES users(id)
-  );
-
-  CREATE TABLE IF NOT EXISTS job_notifications (
-    id INTEGER PRIMARY KEY AUTOINCREMENT,
-    monitor_id INTEGER,
-    job_id TEXT,
-    headline TEXT,
-    employer TEXT,
+    question_id TEXT,
+    quiz_id TEXT,
     timestamp DATETIME DEFAULT CURRENT_TIMESTAMP,
-    read BOOLEAN DEFAULT 0,
-    FOREIGN KEY(monitor_id) REFERENCES job_monitors(id)
-  );
-
-  CREATE TABLE IF NOT EXISTS saved_jobs (
-    id TEXT PRIMARY KEY,
-    user_id INTEGER,
-    headline TEXT,
-    employer TEXT,
-    municipality TEXT,
-    timestamp DATETIME DEFAULT CURRENT_TIMESTAMP,
+    UNIQUE(user_id, question_id),
     FOREIGN KEY(user_id) REFERENCES users(id)
   );
 `);
@@ -74,93 +59,60 @@ const authenticateToken = (req: any, res: any, next: any) => {
   }
 };
 
-async function checkMonitors() {
-  try {
-    const monitors = db.prepare('SELECT * FROM job_monitors').all() as any[];
-    
-    for (const monitor of monitors) {
-      const { id, query, city, last_checked } = monitor;
-      let searchQuery = query;
-      if (city) searchQuery += ` ${city}`;
-
-      // Format last_checked for API (YYYY-MM-DDTHH:MM:SS)
-      const lastCheckedDate = new Date(last_checked);
-      const formattedDate = lastCheckedDate.toISOString().split('.')[0];
-
-      try {
-        const response = await fetch(
-          `https://jobsearch.api.jobtechdev.se/search?q=${encodeURIComponent(searchQuery)}&published-after=${formattedDate}&limit=5`,
-          { headers: { 'accept': 'application/json' } }
-        );
-
-        if (response.ok) {
-          const data = await response.json();
-          const newJobs = data.hits || [];
-
-          const insertNotif = db.prepare(`
-            INSERT INTO job_notifications (monitor_id, job_id, headline, employer)
-            VALUES (?, ?, ?, ?)
-          `);
-          
-          const checkExists = db.prepare('SELECT 1 FROM job_notifications WHERE job_id = ?');
-
-          for (const job of newJobs) {
-            // Check if notification already exists to avoid duplicates
-            const exists = checkExists.get(job.id);
-            if (!exists) {
-              insertNotif.run(id, job.id, job.headline, job.employer?.name || 'Okänd arbetsgivare');
-            }
-          }
-
-          // Update last_checked
-          db.prepare('UPDATE job_monitors SET last_checked = CURRENT_TIMESTAMP WHERE id = ?').run(id);
-        }
-      } catch (err) {
-        console.error(`Error checking monitor ${id}:`, err);
-      }
-    }
-  } catch (error) {
-    console.error('Monitor check failed:', error);
-  }
-}
-
-// Run monitor check every 60 seconds for demo purposes
-setInterval(checkMonitors, 60000);
-
 async function startServer() {
+  console.log('Server running in:', __dirname);
+  console.log('Public directory:', path.join(__dirname, 'public'));
   const app = express();
   const PORT = 3000;
 
-  app.use(express.json());
+  app.use(express.json({ limit: '50mb' }));
   app.use(cookieParser());
+  app.use(express.static(path.join(__dirname, 'public')));
+
+  // Explicit route for images to debug and ensure they are served
+  app.use('/images', (req, res, next) => {
+    const imagePath = path.join(__dirname, 'public', 'images', req.path);
+    if (fs.existsSync(imagePath)) {
+      res.sendFile(imagePath);
+    } else {
+      next();
+    }
+  });
+
+  // Quiz Data API
+  app.get('/api/quizzes', (req, res) => {
+    try {
+      const filePath = path.join(__dirname, 'src', 'data', 'ykb_quizzes.json');
+      const data = fs.readFileSync(filePath, 'utf8');
+      res.json(JSON.parse(data));
+    } catch (error) {
+      res.status(500).json({ error: 'Failed to fetch quizzes' });
+    }
+  });
 
   // Auth Routes
   app.post('/api/auth/register', async (req, res) => {
     try {
       const { email, password, name } = req.body;
       
-      // Check if user exists
       const existingUser = db.prepare('SELECT * FROM users WHERE email = ?').get(email);
       if (existingUser) {
         return res.status(400).json({ error: 'E-postadressen används redan' });
       }
 
-      // Hash password
       const salt = await bcrypt.genSalt(10);
       const hashedPassword = await bcrypt.hash(password, salt);
 
-      // Insert user
       const stmt = db.prepare('INSERT INTO users (email, password, name) VALUES (?, ?, ?)');
       const info = stmt.run(email, hashedPassword, name);
 
-      // Create token
       const token = jwt.sign({ id: info.lastInsertRowid, email }, JWT_SECRET, { expiresIn: '24h' });
       
       res.cookie('token', token, {
         httpOnly: true,
         secure: process.env.NODE_ENV === 'production',
         sameSite: 'strict',
-        maxAge: 24 * 60 * 60 * 1000 // 24 hours
+        maxAge: 24 * 60 * 60 * 1000
       });
 
       res.json({ id: info.lastInsertRowid, email, name });
@@ -174,26 +126,23 @@ async function startServer() {
     try {
       const { email, password } = req.body;
 
-      // Find user
       const user = db.prepare('SELECT * FROM users WHERE email = ?').get(email) as any;
       if (!user) {
         return res.status(400).json({ error: 'Felaktig e-post eller lösenord' });
       }
 
-      // Check password
       const validPassword = await bcrypt.compare(password, user.password);
       if (!validPassword) {
         return res.status(400).json({ error: 'Felaktig e-post eller lösenord' });
       }
 
-      // Create token
       const token = jwt.sign({ id: user.id, email: user.email }, JWT_SECRET, { expiresIn: '24h' });
       
       res.cookie('token', token, {
         httpOnly: true,
         secure: process.env.NODE_ENV === 'production',
         sameSite: 'strict',
-        maxAge: 24 * 60 * 60 * 1000 // 24 hours
+        maxAge: 24 * 60 * 60 * 1000
       });
 
       res.json({ id: user.id, email: user.email, name: user.name });
@@ -217,211 +166,101 @@ async function startServer() {
       res.status(500).json({ error: 'Failed to fetch user' });
     }
   });
-  
-  // Protected Routes (require auth)
-  
-  // Monitor Routes
-  app.post('/api/monitors', authenticateToken, (req: any, res) => {
-    try {
-      const { query, city } = req.body;
-      const stmt = db.prepare('INSERT INTO job_monitors (user_id, query, city) VALUES (?, ?, ?)');
-      const info = stmt.run(req.user.id, query, city);
-      
-      // Trigger an immediate check for this new monitor
-      checkMonitors();
-      
-      res.json({ id: info.lastInsertRowid, success: true });
-    } catch (error) {
-      res.status(500).json({ error: 'Failed to create monitor' });
-    }
-  });
 
-  app.get('/api/notifications', authenticateToken, (req: any, res) => {
+  // Quiz Results Routes
+  app.post('/api/results', authenticateToken, (req: any, res) => {
     try {
-      // Get notifications for monitors owned by the user
-      const notifs = db.prepare(`
-        SELECT n.* FROM job_notifications n
-        JOIN job_monitors m ON n.monitor_id = m.id
-        WHERE m.user_id = ?
-        ORDER BY n.timestamp DESC 
-        LIMIT 50
-      `).all(req.user.id);
-      res.json(notifs);
-    } catch (error) {
-      res.status(500).json({ error: 'Failed to fetch notifications' });
-    }
-  });
-
-  app.post('/api/notifications/mark-read', authenticateToken, (req: any, res) => {
-    try {
-      // Mark notifications as read for monitors owned by the user
-      db.prepare(`
-        UPDATE job_notifications 
-        SET read = 1 
-        WHERE monitor_id IN (SELECT id FROM job_monitors WHERE user_id = ?)
-      `).run(req.user.id);
+      const { quiz_id, quiz_title, score, total_questions, percentage } = req.body;
+      const stmt = db.prepare(`
+        INSERT INTO quiz_results (user_id, quiz_id, quiz_title, score, total_questions, percentage)
+        VALUES (?, ?, ?, ?, ?, ?)
+      `);
+      stmt.run(req.user.id, quiz_id, quiz_title, score, total_questions, percentage);
       res.json({ success: true });
     } catch (error) {
-      res.status(500).json({ error: 'Failed to update notifications' });
+      console.error('Save result error:', error);
+      res.status(500).json({ error: 'Failed to save quiz result' });
     }
   });
 
-  // Saved Jobs Routes
-  app.get('/api/saved-jobs', authenticateToken, (req: any, res) => {
+  app.get('/api/results', authenticateToken, (req: any, res) => {
     try {
-      const jobs = db.prepare('SELECT * FROM saved_jobs WHERE user_id = ? ORDER BY timestamp DESC').all(req.user.id);
-      res.json(jobs);
+      const results = db.prepare('SELECT * FROM quiz_results WHERE user_id = ? ORDER BY timestamp DESC').all(req.user.id);
+      res.json(results);
     } catch (error) {
-      res.status(500).json({ error: 'Failed to fetch saved jobs' });
+      res.status(500).json({ error: 'Failed to fetch results' });
     }
   });
 
-  app.post('/api/saved-jobs', authenticateToken, (req: any, res) => {
+  // Bookmark Routes
+  app.post('/api/bookmarks', authenticateToken, (req: any, res) => {
     try {
-      const { id, headline, employer, municipality } = req.body;
-      db.prepare('INSERT OR REPLACE INTO saved_jobs (id, user_id, headline, employer, municipality) VALUES (?, ?, ?, ?, ?)').run(id, req.user.id, headline, employer, municipality);
+      const { question_id, quiz_id } = req.body;
+      const stmt = db.prepare('INSERT OR IGNORE INTO bookmarks (user_id, question_id, quiz_id) VALUES (?, ?, ?)');
+      stmt.run(req.user.id, question_id, quiz_id);
       res.json({ success: true });
     } catch (error) {
-      res.status(500).json({ error: 'Failed to save job' });
+      res.status(500).json({ error: 'Failed to bookmark question' });
     }
   });
 
-  app.delete('/api/saved-jobs/:id', authenticateToken, (req: any, res) => {
+  app.delete('/api/bookmarks/:questionId', authenticateToken, (req: any, res) => {
     try {
-      db.prepare('DELETE FROM saved_jobs WHERE id = ? AND user_id = ?').run(req.params.id, req.user.id);
+      const stmt = db.prepare('DELETE FROM bookmarks WHERE user_id = ? AND question_id = ?');
+      stmt.run(req.user.id, req.params.questionId);
       res.json({ success: true });
     } catch (error) {
-      res.status(500).json({ error: 'Failed to delete saved job' });
+      res.status(500).json({ error: 'Failed to remove bookmark' });
     }
   });
 
-  // API Routes
-  app.get('/api/notes', authenticateToken, (req: any, res) => {
+  app.get('/api/bookmarks', authenticateToken, (req: any, res) => {
     try {
-      const stmt = db.prepare('SELECT * FROM notes WHERE user_id = ? ORDER BY timestamp DESC');
-      const notes = stmt.all(req.user.id);
-      res.json(notes);
+      const bookmarks = db.prepare('SELECT * FROM bookmarks WHERE user_id = ?').all(req.user.id);
+      res.json(bookmarks);
     } catch (error) {
-      res.status(500).json({ error: 'Failed to fetch notes' });
+      res.status(500).json({ error: 'Failed to fetch bookmarks' });
     }
   });
 
-  app.post('/api/notes', authenticateToken, (req: any, res) => {
+  // Dev Tool: Save Recreated Image
+  app.post('/api/save-image', (req, res) => {
     try {
-      const { content } = req.body;
-      if (!content) {
-        return res.status(400).json({ error: 'Content is required' });
+      const { path: imagePath, data } = req.body;
+      if (!imagePath || !data) {
+        return res.status(400).json({ error: 'Path and data are required' });
       }
-      const stmt = db.prepare('INSERT INTO notes (user_id, content) VALUES (?, ?)');
-      const info = stmt.run(req.user.id, content);
-      res.json({ id: info.lastInsertRowid, content });
-    } catch (error) {
-      res.status(500).json({ error: 'Failed to save note' });
-    }
-  });
 
-  app.put('/api/notes/:id', authenticateToken, (req: any, res) => {
-    try {
-      const { id } = req.params;
-      const { content } = req.body;
-      const stmt = db.prepare('UPDATE notes SET content = ?, timestamp = CURRENT_TIMESTAMP WHERE id = ? AND user_id = ?');
-      const info = stmt.run(content, id, req.user.id);
-      if (info.changes === 0) return res.status(404).json({ error: 'Note not found' });
+      const safePath = path.join(__dirname, 'public', imagePath.replace(/^\//, ''));
+      const dir = path.dirname(safePath);
+      
+      if (!fs.existsSync(dir)) {
+        fs.mkdirSync(dir, { recursive: true });
+      }
+
+      fs.writeFileSync(safePath, Buffer.from(data, 'base64'));
+      console.log(`Saved image to ${safePath}`);
       res.json({ success: true });
     } catch (error) {
-      res.status(500).json({ error: 'Failed to update note' });
+      console.error('Save image error:', error);
+      res.status(500).json({ error: 'Failed to save image' });
     }
   });
 
-  app.delete('/api/notes/:id', authenticateToken, (req: any, res) => {
+  // Dev Tool: Update Quiz Data
+  app.post('/api/update-quiz-data', (req, res) => {
     try {
-      const { id } = req.params;
-      const stmt = db.prepare('DELETE FROM notes WHERE id = ? AND user_id = ?');
-      const info = stmt.run(id, req.user.id);
-      if (info.changes === 0) return res.status(404).json({ error: 'Note not found' });
+      const { data } = req.body;
+      if (!data) {
+        return res.status(400).json({ error: 'Data is required' });
+      }
+
+      const filePath = path.join(__dirname, 'src', 'data', 'ykb_quizzes.json');
+      fs.writeFileSync(filePath, JSON.stringify(data, null, 2));
       res.json({ success: true });
     } catch (error) {
-      res.status(500).json({ error: 'Failed to delete note' });
-    }
-  });
-
-  // Job Search Proxy (Public)
-  app.get('/api/jobs', async (req, res) => {
-    try {
-      const { q = 'lastbilsförare', offset = '0', limit = '10', 'published-after': publishedAfter } = req.query;
-      
-      // Default: Swedish JobTech API
-      let url = `https://jobsearch.api.jobtechdev.se/search?q=${encodeURIComponent(q as string)}&offset=${offset}&limit=${limit}`;
-      
-      if (publishedAfter) {
-        url += `&published-after=${publishedAfter}`;
-      }
-
-      const response = await fetch(
-        url,
-        {
-          headers: {
-            'accept': 'application/json'
-          }
-        }
-      );
-      
-      if (!response.ok) {
-        throw new Error(`JobTech API responded with ${response.status}`);
-      }
-      
-      const data = await response.json();
-      res.json(data);
-    } catch (error) {
-      console.error('Job search error:', error);
-      res.status(500).json({ error: 'Failed to fetch jobs' });
-    }
-  });
-
-  app.get('/api/jobs/:id', async (req, res) => {
-    try {
-      const { id } = req.params;
-      const response = await fetch(
-        `https://jobsearch.api.jobtechdev.se/ad/${id}`,
-        {
-          headers: {
-            'accept': 'application/json'
-          }
-        }
-      );
-      
-      if (!response.ok) {
-        throw new Error(`JobTech API responded with ${response.status}`);
-      }
-      
-      const data = await response.json();
-      res.json(data);
-    } catch (error) {
-      console.error('Job details error:', error);
-      res.status(500).json({ error: 'Failed to fetch job details' });
-    }
-  });
-
-  app.get('/api/jobs/:id/logo', async (req, res) => {
-    try {
-      const { id } = req.params;
-      const response = await fetch(`https://jobsearch.api.jobtechdev.se/ad/${id}/logo`);
-      
-      if (!response.ok) {
-        return res.status(404).send();
-      }
-
-      const contentType = response.headers.get('content-type');
-      if (contentType) {
-        res.setHeader('Content-Type', contentType);
-      }
-
-      const arrayBuffer = await response.arrayBuffer();
-      const buffer = Buffer.from(arrayBuffer);
-      res.send(buffer);
-    } catch (error) {
-      console.error('Job logo error:', error);
-      res.status(500).send();
+      console.error('Update quiz data error:', error);
+      res.status(500).json({ error: 'Failed to update quiz data' });
     }
   });
 
@@ -433,7 +272,6 @@ async function startServer() {
     });
     app.use(vite.middlewares);
   } else {
-    // Production static file serving (if we were building for prod)
     app.use(express.static(path.resolve(__dirname, 'dist')));
   }
 

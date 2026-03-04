@@ -1,347 +1,420 @@
-import React, { useState } from 'react';
-import { motion, AnimatePresence } from 'framer-motion';
-import { CheckCircle2, XCircle, ArrowRight, ArrowLeft, RotateCcw, Trophy, AlertCircle } from 'lucide-react';
+import React, { useState, useEffect } from 'react';
+import { motion } from 'framer-motion';
+import { CheckCircle2, ArrowRight, Trophy, Truck, Bus, BookOpen, Car, Zap, AlertTriangle, LogOut } from 'lucide-react';
 import { cn } from './lib/utils';
-import quizzesData from './data/ykb_quizzes.json';
-
-type Option = {
-  id: string;
-  text: string;
-  isCorrect: boolean;
-};
-
-type Question = {
-  id: string;
-  text: string;
-  image: string | null;
-  options: Option[];
-};
-
-type Quiz = {
-  id: string;
-  title: string;
-  questions: Question[];
-};
+import TrafikverketQuiz from './components/TrafikverketQuiz';
+import ReferenceSection from './components/ReferenceSection';
+import PlatformFeatures from './components/PlatformFeatures';
+import AboutSection from './components/AboutSection';
+import Auth from './components/Auth';
+import Profile from './components/Profile';
+import AdminEditor from './components/AdminEditor';
+import { Quiz, QuizCategory, Question } from './types';
+import { supabase } from './lib/supabaseClient';
+import { User } from '@supabase/supabase-js';
 
 export default function App() {
+  const [quizzes, setQuizzes] = useState<Quiz[]>([]);
   const [selectedQuiz, setSelectedQuiz] = useState<Quiz | null>(null);
-  const [currentQuestionIndex, setCurrentQuestionIndex] = useState(0);
-  const [selectedAnswers, setSelectedAnswers] = useState<Record<string, string>>({});
-  const [showResults, setShowResults] = useState(false);
+  const [activeTab, setActiveTab] = useState<'quizzes' | 'reference' | 'about' | 'profile' | 'admin'>('quizzes');
+  const [selectedCategory, setSelectedCategory] = useState<QuizCategory | 'ALL'>('ALL');
+  const [loading, setLoading] = useState(true);
+  const [user, setUser] = useState<User | null>(null);
+  const [showAuth, setShowAuth] = useState(false);
+  const [authMode, setAuthMode] = useState<'login' | 'signup'>('login');
 
-  const handleQuizSelect = (quiz: Quiz) => {
-    setSelectedQuiz(quiz);
-    setCurrentQuestionIndex(0);
-    setSelectedAnswers({});
-    setShowResults(false);
-  };
+  // Fetch quizzes from API (Supabase or Local Fallback)
+  useEffect(() => {
+    // ... existing fetch logic ...
+    const fetchQuizzes = async () => {
+      try {
+        // Try fetching from Supabase first
+        const { data: questions, error } = await supabase
+          .from('questions')
+          .select(`
+            *,
+            choices (*)
+          `)
+          .eq('is_active', true);
 
-  const handleAnswerSelect = (questionId: string, optionId: string) => {
-    setSelectedAnswers(prev => ({
-      ...prev,
-      [questionId]: optionId
-    }));
-  };
+        if (error || !questions || questions.length === 0) {
+          console.log('Fetching from local API fallback due to:', error || 'No data');
+          // Fallback to local API
+          const response = await fetch('/api/quizzes');
+          if (response.ok) {
+            const data = await response.json();
+            setQuizzes(data);
+          }
+        } else {
+          // Transform Supabase data to Quiz format
+          // Group questions by category/topic to form "Quizzes"
+          const groupedQuizzes: Record<string, Quiz> = {};
 
-  const handleNext = () => {
-    if (selectedQuiz && currentQuestionIndex < selectedQuiz.questions.length - 1) {
-      setCurrentQuestionIndex(prev => prev + 1);
-    } else {
-      setShowResults(true);
-    }
-  };
+          questions.forEach((q: any) => {
+            const quizId = q.category + '-' + (q.topic || 'General');
+            if (!groupedQuizzes[quizId]) {
+              groupedQuizzes[quizId] = {
+                id: quizId,
+                title: q.topic || `${q.category} Övningsprov`,
+                category: q.category as QuizCategory,
+                questions: [],
+                description: `Övningsprov för ${q.category}`
+              };
+            }
 
-  const handlePrev = () => {
-    if (currentQuestionIndex > 0) {
-      setCurrentQuestionIndex(prev => prev - 1);
-    }
-  };
+            groupedQuizzes[quizId].questions.push({
+              id: q.id,
+              type: 'multiple-choice', // Defaulting for now
+              text: q.question_text,
+              image: q.image_url,
+              explanation: q.explanation,
+              category: q.category,
+              difficulty: q.difficulty,
+              options: q.choices.map((c: any) => ({
+                id: c.id,
+                text: c.choice_text,
+                isCorrect: c.is_correct
+              }))
+            });
+          });
 
-  const handleRestart = () => {
-    setCurrentQuestionIndex(0);
-    setSelectedAnswers({});
-    setShowResults(false);
-  };
+          setQuizzes(Object.values(groupedQuizzes));
+        }
+      } catch (error) {
+        console.error('Failed to fetch quizzes:', error);
+      } finally {
+        setLoading(false);
+      }
+    };
 
-  const handleBackToMenu = () => {
-    setSelectedQuiz(null);
-  };
-
-  if (!selectedQuiz) {
-    return (
-      <div className="min-h-screen bg-slate-50 text-slate-900 py-12 px-4 sm:px-6 lg:px-8">
-        <div className="max-w-3xl mx-auto">
-          <div className="text-center mb-12">
-            <h1 className="text-4xl font-extrabold tracking-tight text-slate-900 sm:text-5xl">
-              YKB Provfrågor
-            </h1>
-            <p className="mt-4 text-xl text-slate-600">
-              Öva inför ditt Yrkeskompetensbevis (YKB) med riktiga provfrågor.
-            </p>
-          </div>
-
-          <div className="grid gap-6 sm:grid-cols-2">
-            {quizzesData.map((quiz, index) => (
-              <motion.button
-                key={quiz.id}
-                whileHover={{ scale: 1.02 }}
-                whileTap={{ scale: 0.98 }}
-                onClick={() => handleQuizSelect(quiz as Quiz)}
-                className="flex flex-col items-start p-6 bg-white rounded-2xl shadow-sm border border-slate-200 hover:border-indigo-500 hover:shadow-md transition-all text-left"
-              >
-                <div className="flex items-center justify-between w-full mb-4">
-                  <span className="inline-flex items-center justify-center w-10 h-10 rounded-full bg-indigo-100 text-indigo-600 font-semibold">
-                    {index + 1}
-                  </span>
-                  <span className="text-sm font-medium text-slate-500">
-                    {quiz.questions.length} frågor
-                  </span>
-                </div>
-                <h3 className="text-xl font-bold text-slate-900">{quiz.title}</h3>
-                <p className="mt-2 text-sm text-slate-500">
-                  Testa dina kunskaper i detta delprov.
-                </p>
-              </motion.button>
-            ))}
-          </div>
-        </div>
-      </div>
-    );
-  }
-
-  const currentQuestion = selectedQuiz.questions[currentQuestionIndex];
-  const isAnswered = !!selectedAnswers[currentQuestion.id];
-  const selectedOptionId = selectedAnswers[currentQuestion.id];
-
-  const calculateScore = () => {
-    let correct = 0;
-    selectedQuiz.questions.forEach(q => {
-      const selectedId = selectedAnswers[q.id];
-      const correctOption = q.options.find(o => o.isCorrect);
-      if (selectedId && correctOption && selectedId === correctOption.id) {
-        correct++;
+    // Check auth state
+    supabase.auth.getSession().then(({ data: { session } }) => {
+      const currentUser = session?.user ?? null;
+      setUser(currentUser);
+      if (!currentUser && ['quizzes', 'reference', 'profile', 'admin'].includes(activeTab)) {
+        setActiveTab('about');
       }
     });
-    return correct;
+
+    const { data: { subscription } } = supabase.auth.onAuthStateChange((_event, session) => {
+      const currentUser = session?.user ?? null;
+      setUser(currentUser);
+      if (!currentUser && ['quizzes', 'reference', 'profile', 'admin'].includes(activeTab)) {
+        setActiveTab('about');
+      } else if (currentUser && activeTab === 'about') {
+        setActiveTab('quizzes');
+      }
+    });
+
+    fetchQuizzes();
+
+    return () => subscription.unsubscribe();
+  }, [activeTab]);
+
+  const handleStartQuickQuiz = async (count: number, type: 'random' | 'failed') => {
+    if (!user && type === 'failed') {
+      setShowAuth(true);
+      return;
+    }
+
+    setLoading(true);
+    try {
+      let query = supabase
+        .from('questions')
+        .select(`*, choices (*)`)
+        .eq('is_active', true);
+
+      if (selectedCategory !== 'ALL') {
+        query = query.eq('category', selectedCategory);
+      }
+
+      // If 'failed', we would join with user_question_stats, but for simplicity in this demo:
+      // We'll just fetch random for now, or implement a specific RPC for failed questions later.
+      // For now, let's just fetch random questions.
+      
+      const { data, error } = await query;
+      
+      if (error) throw error;
+
+      if (data) {
+        // Shuffle and slice
+        const shuffled = data.sort(() => 0.5 - Math.random()).slice(0, count);
+        
+        const quickQuiz: Quiz = {
+          id: `quick-${Date.now()}`,
+          title: `Snabbträning (${count} frågor)`,
+          category: selectedCategory === 'ALL' ? 'Gemensam' : selectedCategory,
+          questions: shuffled.map((q: any) => ({
+            id: q.id,
+            type: 'multiple-choice',
+            text: q.question_text,
+            image: q.image_url,
+            explanation: q.explanation,
+            category: q.category,
+            difficulty: q.difficulty,
+            options: q.choices.map((c: any) => ({
+              id: c.id,
+              text: c.choice_text,
+              isCorrect: c.is_correct
+            }))
+          }))
+        };
+        setSelectedQuiz(quickQuiz);
+      }
+    } catch (err) {
+      console.error("Error starting quick quiz:", err);
+    } finally {
+      setLoading(false);
+    }
   };
 
-  if (showResults) {
-    const score = calculateScore();
-    const percentage = Math.round((score / selectedQuiz.questions.length) * 100);
-    const passed = percentage >= 80; // Assuming 80% is passing
+  const handleLogout = async () => {
+    await supabase.auth.signOut();
+    setUser(null);
+  };
 
+  if (loading) {
     return (
-      <div className="min-h-screen bg-slate-50 py-12 px-4 sm:px-6 lg:px-8">
-        <div className="max-w-3xl mx-auto">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            className="bg-white rounded-3xl shadow-xl overflow-hidden"
-          >
-            <div className={cn(
-              "p-8 text-center text-white",
-              passed ? "bg-emerald-500" : "bg-rose-500"
-            )}>
-              <div className="inline-flex items-center justify-center w-20 h-20 rounded-full bg-white/20 mb-6">
-                {passed ? <Trophy className="w-10 h-10 text-white" /> : <AlertCircle className="w-10 h-10 text-white" />}
-              </div>
-              <h2 className="text-3xl font-bold mb-2">
-                {passed ? "Grattis, du klarade det!" : "Tyvärr, du nådde inte godkänt."}
-              </h2>
-              <p className="text-white/80 text-lg">
-                Du fick {score} av {selectedQuiz.questions.length} rätt ({percentage}%)
-              </p>
-            </div>
-
-            <div className="p-8">
-              <div className="flex flex-col sm:flex-row gap-4 justify-center mb-12">
-                <button
-                  onClick={handleRestart}
-                  className="flex items-center justify-center gap-2 px-6 py-3 bg-slate-100 hover:bg-slate-200 text-slate-700 font-semibold rounded-xl transition-colors"
-                >
-                  <RotateCcw className="w-5 h-5" />
-                  Gör om provet
-                </button>
-                <button
-                  onClick={handleBackToMenu}
-                  className="flex items-center justify-center gap-2 px-6 py-3 bg-indigo-600 hover:bg-indigo-700 text-white font-semibold rounded-xl transition-colors"
-                >
-                  Välj annat prov
-                </button>
-              </div>
-
-              <div className="space-y-8">
-                <h3 className="text-xl font-bold text-slate-900 border-b pb-4">Genomgång av dina svar</h3>
-                {selectedQuiz.questions.map((q, i) => {
-                  const userAnswerId = selectedAnswers[q.id];
-                  const correctOption = q.options.find(o => o.isCorrect);
-                  const isCorrect = userAnswerId === correctOption?.id;
-
-                  return (
-                    <div key={q.id} className="bg-slate-50 rounded-2xl p-6 border border-slate-200">
-                      <div className="flex gap-4">
-                        <div className="flex-shrink-0 mt-1">
-                          {isCorrect ? (
-                            <CheckCircle2 className="w-6 h-6 text-emerald-500" />
-                          ) : (
-                            <XCircle className="w-6 h-6 text-rose-500" />
-                          )}
-                        </div>
-                        <div>
-                          <p className="text-sm font-medium text-slate-500 mb-1">Fråga {i + 1}</p>
-                          <p className="text-slate-900 font-medium mb-4">{q.text}</p>
-                          
-                          <div className="space-y-2">
-                            {q.options.map(opt => {
-                              const isSelected = opt.id === userAnswerId;
-                              const isActuallyCorrect = opt.isCorrect;
-                              
-                              let optionClass = "text-slate-600";
-                              if (isActuallyCorrect) {
-                                optionClass = "text-emerald-700 font-medium bg-emerald-50 px-3 py-2 rounded-lg border border-emerald-200";
-                              } else if (isSelected && !isActuallyCorrect) {
-                                optionClass = "text-rose-700 font-medium bg-rose-50 px-3 py-2 rounded-lg border border-rose-200";
-                              } else {
-                                optionClass = "px-3 py-2";
-                              }
-
-                              return (
-                                <div key={opt.id} className={optionClass}>
-                                  {opt.text}
-                                  {isActuallyCorrect && <span className="ml-2 text-emerald-600 text-sm">(Rätt svar)</span>}
-                                  {isSelected && !isActuallyCorrect && <span className="ml-2 text-rose-600 text-sm">(Ditt svar)</span>}
-                                </div>
-                              );
-                            })}
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                  );
-                })}
-              </div>
-            </div>
-          </motion.div>
+      <div className="min-h-screen bg-slate-50 flex items-center justify-center">
+        <div className="flex flex-col items-center gap-4">
+          <div className="w-12 h-12 border-4 border-indigo-600 border-t-transparent rounded-full animate-spin" />
+          <p className="text-slate-600 font-black animate-pulse">LADDAR TEORIPLATTFORMEN...</p>
         </div>
       </div>
     );
   }
 
+  if (selectedQuiz) {
+    return <TrafikverketQuiz quiz={selectedQuiz} onExit={() => setSelectedQuiz(null)} user={user} />;
+  }
+
+  const getCategoryIcon = (category: string) => {
+    switch (category) {
+      case 'YKB': return <BookOpen className="w-6 h-6 text-indigo-600" />;
+      case 'C': return <Truck className="w-6 h-6 text-emerald-600" />;
+      case 'CE': return <Truck className="w-6 h-6 text-purple-600" />; // Truck with trailer implied
+      case 'D': return <Bus className="w-6 h-6 text-blue-600" />;
+      default: return <Car className="w-6 h-6 text-slate-600" />;
+    }
+  };
+
   return (
-    <div className="min-h-screen bg-slate-50 py-8 px-4 sm:px-6 lg:px-8 flex flex-col">
-      <div className="max-w-3xl mx-auto w-full flex-1 flex flex-col">
-        {/* Header */}
-        <div className="flex items-center justify-between mb-8">
-          <button
-            onClick={handleBackToMenu}
-            className="text-sm font-medium text-slate-500 hover:text-slate-900 transition-colors flex items-center gap-1"
+    <div className="min-h-screen bg-slate-50 text-slate-900 font-sans selection:bg-indigo-500/30">
+      <Auth 
+        isOpen={showAuth} 
+        onClose={() => setShowAuth(false)} 
+        initialIsSignUp={authMode === 'signup'}
+        onUserChange={(u) => {
+          setUser(u);
+          if (u) setShowAuth(false);
+        }} 
+      />
+      {/* Animated Background Elements */}
+      <div className="fixed inset-0 overflow-hidden pointer-events-none">
+        <div className="absolute -top-[10%] -left-[10%] w-[40%] h-[40%] bg-blue-500/5 blur-[120px] rounded-full" />
+        <div className="absolute top-[20%] right-[10%] w-[30%] h-[30%] bg-purple-500/5 blur-[120px] rounded-full" />
+        <div className="absolute -bottom-[10%] -right-[10%] w-[40%] h-[40%] bg-teal-500/5 blur-[120px] rounded-full" />
+      </div>
+
+      <div className="max-w-7xl mx-auto px-4 py-12 relative z-10">
+        <header className="text-center mb-16 relative">
+          {user ? (
+            <div className="absolute top-0 right-0 flex items-center gap-4">
+              <span className="text-sm font-medium text-slate-600 hidden sm:inline">Inloggad</span>
+              <button 
+                onClick={handleLogout}
+                className="p-2 bg-white rounded-full shadow-sm border border-slate-200 hover:bg-slate-50 text-slate-600"
+                title="Logga ut"
+              >
+                <LogOut className="w-5 h-5" />
+              </button>
+            </div>
+          ) : (
+            <div className="absolute top-0 right-0 flex gap-3">
+              <button 
+                onClick={() => { setAuthMode('login'); setShowAuth(true); }}
+                className="px-4 py-2 bg-white rounded-lg shadow-sm border border-slate-200 text-sm font-bold text-slate-900 hover:bg-slate-50"
+              >
+                Logga in
+              </button>
+              <button 
+                onClick={() => { setAuthMode('signup'); setShowAuth(true); }}
+                className="px-4 py-2 bg-indigo-600 rounded-lg shadow-sm border border-indigo-600 text-sm font-bold text-white hover:bg-indigo-700 hidden sm:block"
+              >
+                Skapa konto
+              </button>
+            </div>
+          )}
+
+          <motion.div 
+            initial={{ scale: 0.8, opacity: 0 }}
+            animate={{ scale: 1, opacity: 1 }}
+            className="inline-flex items-center justify-center p-4 bg-white rounded-2xl mb-6 shadow-sm border border-slate-100"
           >
-            <ArrowLeft className="w-4 h-4" />
-            Avbryt
-          </button>
-          <div className="text-sm font-medium text-slate-500">
-            Fråga {currentQuestionIndex + 1} av {selectedQuiz.questions.length}
+            <Trophy className="w-12 h-12 text-indigo-600" />
+          </motion.div>
+          <h1 className="text-5xl md:text-6xl font-black text-slate-900 mb-6 tracking-tight">
+            Teori<span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-600 via-purple-600 to-teal-500">plattformen</span>
+          </h1>
+          <p className="text-slate-500 text-lg md:text-xl max-w-2xl mx-auto font-medium leading-relaxed">
+            Den ultimata plattformen för buss- och lastbilsutbildningen. 
+            Träna på riktiga frågor och bli redo för teoriprovet.
+          </p>
+        </header>
+
+        {/* Navigation Tabs */}
+        <div className="flex justify-center mb-16">
+          <div className="bg-white p-1.5 rounded-2xl border border-slate-200 shadow-sm flex flex-wrap justify-center gap-1">
+            {user && (
+              <>
+                <button
+                  onClick={() => setActiveTab('quizzes')}
+                  className={cn(
+                    "px-6 sm:px-8 py-3 rounded-xl font-bold transition-all duration-200 text-sm sm:text-base",
+                    activeTab === 'quizzes' 
+                      ? "bg-slate-900 text-white shadow-lg shadow-slate-900/20" 
+                      : "text-slate-500 hover:text-slate-900 hover:bg-slate-50"
+                  )}
+                >
+                  Övningsprov
+                </button>
+                <button
+                  onClick={() => setActiveTab('reference')}
+                  className={cn(
+                    "px-6 sm:px-8 py-3 rounded-xl font-bold transition-all duration-200 text-sm sm:text-base",
+                    activeTab === 'reference' 
+                      ? "bg-slate-900 text-white shadow-lg shadow-slate-900/20" 
+                      : "text-slate-500 hover:text-slate-900 hover:bg-slate-50"
+                  )}
+                >
+                  Funktionsbeskrivning
+                </button>
+                <button
+                  onClick={() => setActiveTab('profile')}
+                  className={cn(
+                    "px-6 sm:px-8 py-3 rounded-xl font-bold transition-all duration-200 text-sm sm:text-base",
+                    activeTab === 'profile' 
+                      ? "bg-slate-900 text-white shadow-lg shadow-slate-900/20" 
+                      : "text-slate-500 hover:text-slate-900 hover:bg-slate-50"
+                  )}
+                >
+                  Profil
+                </button>
+                {user.email?.toLowerCase() === 'rasmus.03@hotmail.se' && (
+                  <button
+                    onClick={() => setActiveTab('admin')}
+                    className={cn(
+                      "px-6 sm:px-8 py-3 rounded-xl font-bold transition-all duration-200 text-sm sm:text-base",
+                      activeTab === 'admin' 
+                        ? "bg-indigo-600 text-white shadow-lg shadow-indigo-600/20" 
+                        : "text-slate-500 hover:text-indigo-600 hover:bg-indigo-50"
+                    )}
+                  >
+                    Fråge-editor
+                  </button>
+                )}
+              </>
+            )}
+            <button
+              onClick={() => setActiveTab('about')}
+              className={cn(
+                "px-6 sm:px-8 py-3 rounded-xl font-bold transition-all duration-200 text-sm sm:text-base",
+                activeTab === 'about' 
+                  ? "bg-slate-900 text-white shadow-lg shadow-slate-900/20" 
+                  : "text-slate-500 hover:text-slate-900 hover:bg-slate-50"
+              )}
+            >
+              Om Plattformen
+            </button>
           </div>
         </div>
 
-        {/* Progress bar */}
-        <div className="w-full bg-slate-200 rounded-full h-2 mb-12 overflow-hidden">
-          <motion.div
-            className="bg-indigo-600 h-2 rounded-full"
-            initial={{ width: 0 }}
-            animate={{ width: `${((currentQuestionIndex + 1) / selectedQuiz.questions.length) * 100}%` }}
-            transition={{ duration: 0.3 }}
-          />
-        </div>
+        {!user && (
+          <motion.div 
+            initial={{ opacity: 0, y: 10 }}
+            animate={{ opacity: 1, y: 0 }}
+            className="max-w-2xl mx-auto mb-12 p-6 bg-indigo-50 border border-indigo-100 rounded-2xl text-center shadow-sm"
+          >
+            <p className="text-indigo-900 font-bold text-lg mb-2">
+              Du behöver skapa ett konto för att svara på frågor!
+            </p>
+            <p className="text-indigo-700">
+              Det är helt gratis och görs enklast via knappen "Logga in" uppe till höger. :)
+            </p>
+          </motion.div>
+        )}
 
-        {/* Question Area */}
-        <div className="flex-1">
-          <AnimatePresence mode="wait">
-            <motion.div
-              key={currentQuestionIndex}
-              initial={{ opacity: 0, x: 20 }}
-              animate={{ opacity: 1, x: 0 }}
-              exit={{ opacity: 0, x: -20 }}
-              transition={{ duration: 0.2 }}
-              className="bg-white rounded-3xl shadow-sm border border-slate-200 p-6 sm:p-10"
-            >
-              <h2 className="text-2xl font-bold text-slate-900 mb-8 leading-relaxed">
-                {currentQuestion.text}
-              </h2>
+        {activeTab === 'quizzes' && user ? (
+          <div className="space-y-10">
+            {/* Category Filter */}
+            <div className="flex flex-wrap justify-center gap-3">
+              {(['ALL', 'YKB', 'C', 'CE', 'D', 'Gemensam'] as const).map((cat) => (
+                <button
+                  key={cat}
+                  onClick={() => setSelectedCategory(cat)}
+                  className={cn(
+                    "px-6 py-2.5 rounded-full text-sm font-bold border transition-all shadow-sm",
+                    selectedCategory === cat
+                      ? "bg-indigo-600 text-white border-indigo-600 shadow-indigo-500/25"
+                      : "bg-white text-slate-600 border-slate-200 hover:border-indigo-200 hover:text-indigo-600"
+                  )}
+                >
+                  {cat === 'ALL' ? 'Alla kategorier' : cat}
+                </button>
+              ))}
+            </div>
 
-              {currentQuestion.image && (
-                <div className="mb-8 rounded-xl overflow-hidden border border-slate-200 bg-slate-50">
-                  <img 
-                    src={currentQuestion.image} 
-                    alt="Frågebild" 
-                    className="w-full h-auto max-h-64 object-contain"
-                    referrerPolicy="no-referrer"
-                  />
-                </div>
-              )}
-
-              <div className="space-y-3">
-                {currentQuestion.options.map((option) => {
-                  const isSelected = selectedOptionId === option.id;
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+              {quizzes
+                .filter(q => selectedCategory === 'ALL' || q.category === selectedCategory)
+                .filter(q => !['Komarken Övningsprov 1', 'CE - Tung Lastbil med Släp', 'CE - Kopplingsanordningar (Fördjupning)', 'CE - Avancerad Körning & Teori'].includes(q.title))
+                .map((quiz, index) => (
+                <motion.div
+                  key={quiz.id}
+                  initial={{ opacity: 0, y: 20 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ delay: index * 0.05 }}
+                  className="group relative bg-white hover:bg-slate-50 border border-slate-100 hover:border-indigo-100 p-8 rounded-[2rem] text-left transition-all duration-300 shadow-sm hover:shadow-xl hover:-translate-y-1 flex flex-col h-full"
+                >
+                  <div className="flex justify-between items-start mb-6">
+                    <div className="w-14 h-14 bg-slate-50 rounded-2xl flex items-center justify-center border border-slate-100 group-hover:bg-white group-hover:shadow-sm transition-all">
+                      {getCategoryIcon(quiz.category)}
+                    </div>
+                    <span className="bg-slate-100 text-slate-600 text-xs font-bold px-3 py-1.5 rounded-full uppercase tracking-wider border border-slate-200">
+                      {quiz.category}
+                    </span>
+                  </div>
                   
-                  return (
-                    <button
-                      key={option.id}
-                      onClick={() => handleAnswerSelect(currentQuestion.id, option.id)}
-                      className={cn(
-                        "w-full text-left p-4 rounded-xl border-2 transition-all duration-200 flex items-center justify-between group",
-                        isSelected 
-                          ? "border-indigo-600 bg-indigo-50 text-indigo-900" 
-                          : "border-slate-200 hover:border-indigo-300 hover:bg-slate-50 text-slate-700"
-                      )}
-                    >
-                      <span className="font-medium pr-4">{option.text}</span>
-                      <div className={cn(
-                        "w-6 h-6 rounded-full border-2 flex items-center justify-center flex-shrink-0 transition-colors",
-                        isSelected
-                          ? "border-indigo-600 bg-indigo-600"
-                          : "border-slate-300 group-hover:border-indigo-400"
-                      )}>
-                        {isSelected && <div className="w-2 h-2 rounded-full bg-white" />}
-                      </div>
-                    </button>
-                  );
-                })}
-              </div>
-            </motion.div>
-          </AnimatePresence>
-        </div>
-
-        {/* Footer Navigation */}
-        <div className="mt-8 flex items-center justify-between">
-          <button
-            onClick={handlePrev}
-            disabled={currentQuestionIndex === 0}
-            className={cn(
-              "flex items-center gap-2 px-6 py-3 rounded-xl font-semibold transition-colors",
-              currentQuestionIndex === 0
-                ? "text-slate-400 cursor-not-allowed"
-                : "text-slate-700 bg-white border border-slate-200 hover:bg-slate-50 hover:text-slate-900"
-            )}
-          >
-            <ArrowLeft className="w-5 h-5" />
-            Föregående
-          </button>
-
-          <button
-            onClick={handleNext}
-            disabled={!isAnswered}
-            className={cn(
-              "flex items-center gap-2 px-8 py-3 rounded-xl font-semibold transition-all",
-              !isAnswered
-                ? "bg-slate-200 text-slate-400 cursor-not-allowed"
-                : "bg-indigo-600 text-white hover:bg-indigo-700 shadow-md hover:shadow-lg"
-            )}
-          >
-            {currentQuestionIndex === selectedQuiz.questions.length - 1 ? 'Rätta provet' : 'Nästa'}
-            {currentQuestionIndex !== selectedQuiz.questions.length - 1 && <ArrowRight className="w-5 h-5" />}
-          </button>
-        </div>
+                  <h3 className="text-2xl font-bold text-slate-900 mb-3 group-hover:text-indigo-600 transition-colors">
+                    {quiz.title}
+                  </h3>
+                  
+                  <p className="text-slate-500 mb-8 font-medium leading-relaxed flex-grow">
+                    {quiz.questions.length} frågor som testar dina kunskaper inom {quiz.category === 'ALL' ? 'alla områden' : quiz.category}.
+                  </p>
+                  
+                  <button
+                    onClick={() => setSelectedQuiz(quiz)}
+                    className="w-full flex items-center justify-center gap-2 py-4 bg-slate-900 text-white font-bold rounded-xl group-hover:bg-indigo-600 transition-all shadow-lg shadow-slate-900/10 group-hover:shadow-indigo-500/25"
+                  >
+                    Starta prov <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
+                  </button>
+                </motion.div>
+              ))}
+            </div>
+          </div>
+        ) : activeTab === 'reference' && user ? (
+          <ReferenceSection />
+        ) : activeTab === 'profile' && user ? (
+          <Profile user={user} />
+        ) : activeTab === 'admin' && user?.email?.toLowerCase() === 'rasmus.03@hotmail.se' ? (
+          <AdminEditor />
+        ) : (
+          <div className="space-y-12">
+            <AboutSection />
+            <PlatformFeatures />
+          </div>
+        )}
       </div>
     </div>
   );
